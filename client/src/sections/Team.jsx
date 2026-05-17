@@ -24,79 +24,73 @@ const team = [
 
 const Team = () => {
   return (
-    <section id="team" className="bg-black px-6 py-28 text-white lg:px-8">
+    <section
+      id="team"
+      className="bg-black px-5 py-20 text-white sm:px-6 sm:py-24 lg:px-8 lg:py-28"
+    >
       <div className="mx-auto max-w-7xl">
-        
-        {/* Header */}
         <div className="mx-auto max-w-3xl text-center">
-          <div className="mb-8 inline-flex rounded-full border border-[#D4A85A]/30 bg-[#D4A85A]/10 px-6 py-3">
-            <p className="text-sm uppercase tracking-[0.25em] text-[#D4A85A]">
+          <div className="mb-6 inline-flex rounded-full border border-[#D4A85A]/30 bg-[#D4A85A]/10 px-5 py-2.5 sm:mb-8 sm:px-6 sm:py-3">
+            <p className="text-xs font-medium uppercase tracking-[0.22em] text-[#D4A85A] sm:text-sm">
               Meet The Team
             </p>
           </div>
 
-          <h2 className="text-5xl font-bold leading-tight sm:text-6xl">
+          <h2 className="text-[2.4rem] font-bold leading-[1.05] sm:text-5xl lg:text-6xl">
             Master Barbers
-            <span className="block text-[#D4A85A]">
-              At Your Service
-            </span>
+            <span className="block text-[#D4A85A]">At Your Service</span>
           </h2>
 
-          <p className="mt-8 text-lg font-light leading-relaxed text-gray-300">
-            Our award-winning team brings passion, precision,
-            and personality to every appointment.
+          <p className="mx-auto mt-6 max-w-2xl text-base font-light leading-relaxed text-gray-300 sm:mt-8 sm:text-lg">
+            Our award-winning team brings passion, precision, and personality
+            to every appointment.
           </p>
         </div>
 
-        {/* Team Grid */}
-        <div className="mt-20 grid gap-10 lg:grid-cols-2">
+        <div className="mt-12 grid gap-10 sm:mt-16 lg:mt-20 lg:grid-cols-2">
           {team.map((member) => (
-            <div key={member.name}>
-              
-              {/* Image */}
-              <div className="group relative overflow-hidden rounded-2xl border border-white/10">
-                
+            <article key={member.name} className="group">
+              <div className="relative overflow-hidden rounded-2xl border border-white/10 bg-white/[0.03]">
                 <img
                   src={member.image}
-                  alt={member.name}
-                  className="h-[620px] w-full object-cover transition duration-500 group-hover:scale-105"
+                  alt={`${member.name}, ${member.role}`}
+                  className="h-[420px] w-full object-cover transition duration-500 group-hover:scale-105 sm:h-[520px] lg:h-[620px]"
                 />
 
-                {/* Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/10 to-transparent" />
 
-                {/* Years Badge */}
-                <div className="absolute bottom-6 left-6 rounded-full bg-[#D4A85A] px-5 py-2 text-sm font-medium text-black">
+                <div className="absolute bottom-5 left-5 rounded-full bg-[#D4A85A] px-4 py-2 text-sm font-semibold text-black sm:bottom-6 sm:left-6 sm:px-5">
                   {member.years}
                 </div>
 
-                {/* Instagram */}
-                <div className="absolute bottom-6 right-6 flex h-14 w-14 items-center justify-center rounded-full border border-white/20 bg-white/10 backdrop-blur-md">
-                  <FaInstagram size={22} />
-                </div>
+                <a
+                  href="#contact"
+                  aria-label={`Book with ${member.name}`}
+                  className="absolute bottom-5 right-5 flex h-12 w-12 items-center justify-center rounded-full border border-white/20 bg-white/10 text-white backdrop-blur-md transition hover:border-[#D4A85A]/50 hover:bg-[#D4A85A] hover:text-black focus:outline-none focus:ring-2 focus:ring-[#D4A85A] sm:bottom-6 sm:right-6 sm:h-14 sm:w-14"
+                >
+                  <FaInstagram aria-hidden="true" size={22} />
+                </a>
 
-                {/* Award */}
-                <div className="absolute right-6 top-6 flex h-14 w-14 items-center justify-center rounded-full bg-[#D4A85A] text-black">
-                  <Award size={24} />
+                <div className="absolute right-5 top-5 flex h-12 w-12 items-center justify-center rounded-full bg-[#D4A85A] text-black sm:right-6 sm:top-6 sm:h-14 sm:w-14">
+                  <Award aria-hidden="true" size={24} />
                 </div>
               </div>
 
-              {/* Content */}
-              <div className="mt-8">
-                <h3 className="text-4xl font-bold">
+              <div className="mt-6 sm:mt-8">
+                <h3 className="text-3xl font-bold sm:text-4xl">
                   {member.name}
                 </h3>
 
-                <p className="mt-3 text-2xl text-[#D4A85A]">
+                <p className="mt-2 text-xl text-[#D4A85A] sm:mt-3 sm:text-2xl">
                   {member.role}
                 </p>
 
-                <p className="mt-3 text-lg text-gray-400">
+                <p className="mt-2 text-base text-gray-400 sm:mt-3 sm:text-lg">
                   {member.instagram}
                 </p>
 
-                <div className="mt-8 border-t border-white/10 pt-8">
-                  <p className="mb-5 text-lg text-gray-300">
+                <div className="mt-6 border-t border-white/10 pt-6 sm:mt-8 sm:pt-8">
+                  <p className="mb-4 text-base text-gray-300 sm:mb-5 sm:text-lg">
                     Specialties:
                   </p>
 
@@ -104,7 +98,7 @@ const Team = () => {
                     {member.specialties.map((specialty) => (
                       <span
                         key={specialty}
-                        className="rounded-full border border-white/10 bg-white/[0.03] px-5 py-2 text-sm text-white"
+                        className="rounded-full border border-white/10 bg-white/[0.03] px-4 py-2 text-sm text-white sm:px-5"
                       >
                         {specialty}
                       </span>
@@ -112,11 +106,14 @@ const Team = () => {
                   </div>
                 </div>
 
-                <button className="mt-10 w-full rounded-xl border border-white/10 bg-white/[0.03] px-6 py-5 text-lg font-medium transition duration-300 hover:border-[#D4A85A]/50 hover:bg-[#D4A85A] hover:text-black">
+                <a
+                  href="#contact"
+                  className="mt-8 flex w-full items-center justify-center rounded-xl border border-white/10 bg-white/[0.03] px-6 py-4 text-base font-semibold transition duration-300 hover:border-[#D4A85A]/50 hover:bg-[#D4A85A] hover:text-black focus:outline-none focus:ring-2 focus:ring-[#D4A85A] focus:ring-offset-4 focus:ring-offset-black sm:mt-10 sm:py-5 sm:text-lg"
+                >
                   Book with {member.name.split(" ")[0]}
-                </button>
+                </a>
               </div>
-            </div>
+            </article>
           ))}
         </div>
       </div>

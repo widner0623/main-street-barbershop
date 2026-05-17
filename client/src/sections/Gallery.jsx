@@ -1,49 +1,3 @@
-const Gallery = () => {
-  return (
-    <section id="gallery" className="bg-black px-6 py-28 text-white lg:px-8">
-      <div className="mx-auto max-w-7xl">
-        <div className="mx-auto max-w-3xl text-center">
-          <div className="mb-8 inline-flex rounded-full border border-[#D4A85A]/30 bg-[#D4A85A]/10 px-6 py-3">
-            <p className="text-sm uppercase tracking-[0.25em] text-[#D4A85A]">
-              Our Work
-            </p>
-          </div>
-
-          <h2 className="text-5xl font-bold leading-tight sm:text-6xl">
-            Recent Cuts
-            <span className="block text-[#D4A85A]">& Styles</span>
-          </h2>
-
-          <p className="mt-8 text-lg font-light leading-relaxed text-gray-300">
-            Explore our portfolio of precision cuts, fades, and grooming work.
-          </p>
-        </div>
-
-        <div className="mt-20 columns-1 gap-6 md:columns-2 lg:columns-3">
-          {galleryImages.map((item) => (
-            <div
-              key={item.label}
-              className="group relative mb-6 overflow-hidden rounded-2xl border border-white/10"
-            >
-              <img
-                src={item.image}
-                alt={item.label}
-                className="w-full object-cover transition duration-500 group-hover:scale-105"
-              />
-
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/5 to-transparent opacity-70 transition duration-300 group-hover:opacity-100" />
-
-              <span className="absolute bottom-5 left-5 rounded-full bg-[#D4A85A] px-5 py-2 text-sm font-medium text-black">
-                {item.label}
-              </span>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-};
-
 const galleryImages = [
   {
     label: "Fresh Fade",
@@ -76,5 +30,57 @@ const galleryImages = [
       "https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?q=80&w=1974&auto=format&fit=crop",
   },
 ];
+
+const Gallery = () => {
+  return (
+    <section
+      id="gallery"
+      className="bg-black px-5 py-20 text-white sm:px-6 sm:py-24 lg:px-8 lg:py-28"
+    >
+      <div className="mx-auto max-w-7xl">
+        <div className="mx-auto max-w-3xl text-center">
+          <div className="mb-6 inline-flex rounded-full border border-[#D4A85A]/30 bg-[#D4A85A]/10 px-5 py-2.5 sm:mb-8 sm:px-6 sm:py-3">
+            <p className="text-xs font-medium uppercase tracking-[0.22em] text-[#D4A85A] sm:text-sm">
+              Our Work
+            </p>
+          </div>
+
+          <h2 className="text-[2.4rem] font-bold leading-[1.05] sm:text-5xl lg:text-6xl">
+            Recent Cuts
+            <span className="block text-[#D4A85A]">& Styles</span>
+          </h2>
+
+          <p className="mx-auto mt-6 max-w-2xl text-base font-light leading-relaxed text-gray-300 sm:mt-8 sm:text-lg">
+            Explore our portfolio of precision cuts, fades, and grooming work.
+          </p>
+        </div>
+
+        <div className="mt-12 grid gap-5 sm:mt-16 sm:grid-cols-2 lg:mt-20 lg:grid-cols-3 lg:gap-6">
+          {galleryImages.map((item) => (
+            <article
+              key={item.label}
+              className="group relative overflow-hidden rounded-2xl border border-white/10 bg-white/[0.03]"
+            >
+              <img
+                src={item.image}
+                alt={item.label}
+                loading="lazy"
+                className="h-[320px] w-full object-cover transition duration-500 group-hover:scale-105 sm:h-[420px] lg:h-[500px]"
+              />
+
+              <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/10 to-transparent opacity-80 transition duration-300 group-hover:opacity-100" />
+
+              <div className="absolute inset-x-0 bottom-0 p-5 sm:p-6">
+                <span className="inline-flex rounded-full bg-[#D4A85A] px-4 py-2 text-sm font-semibold text-black sm:px-5">
+                  {item.label}
+                </span>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+};
 
 export default Gallery;

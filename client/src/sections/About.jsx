@@ -5,124 +5,103 @@ import {
   FiUsers,
 } from "react-icons/fi";
 
+const features = [
+  {
+    icon: FiScissors,
+    title: "Precision",
+    text: "Every cut is crafted with meticulous attention to detail and years of expertise.",
+  },
+  {
+    icon: FiAward,
+    title: "Excellence",
+    text: "We maintain the highest standards in service, technique, and customer care.",
+  },
+  {
+    icon: FiHeart,
+    title: "Tradition",
+    text: "Classic barbering techniques passed down through generations of master barbers.",
+  },
+  {
+    icon: FiUsers,
+    title: "Community",
+    text: "More than a barbershop — a gathering place where neighbors become family.",
+  },
+];
+
 const About = () => {
   return (
-    <section className="bg-black px-6 py-28 text-white lg:px-8">
-      <div className="mx-auto grid max-w-7xl items-center gap-20 lg:grid-cols-2">
-        
-        {/* Left Images */}
-        <div className="relative flex justify-center lg:justify-start">
-          
-          {/* Back Image */}
-          <div className="absolute left-0 top-0 hidden h-[420px] w-[330px] overflow-hidden rounded-2xl border border-white/10 lg:block">
+    <section className="bg-black px-5 py-20 text-white sm:px-6 sm:py-24 lg:px-8 lg:py-28">
+      <div className="mx-auto grid max-w-7xl items-center gap-12 lg:grid-cols-2 lg:gap-20">
+        <div className="relative mx-auto w-full max-w-xl lg:mx-0 lg:min-h-[600px]">
+          <div className="hidden overflow-hidden rounded-2xl border border-white/10 lg:absolute lg:left-0 lg:top-0 lg:block lg:h-[420px] lg:w-[330px]">
             <img
               src="https://images.unsplash.com/photo-1517832606299-7ae9b720a186?q=80&w=1974&auto=format&fit=crop"
-              alt=""
+              alt="Classic barbershop tools and grooming setup"
               className="h-full w-full object-cover"
             />
           </div>
 
-          {/* Front Image */}
-          <div className="relative z-10 mt-28 h-[500px] w-full max-w-[420px] overflow-hidden rounded-2xl border border-white/10 sm:ml-32 lg:ml-40">
+          <div className="relative z-10 h-[360px] w-full overflow-hidden rounded-2xl border border-white/10 sm:h-[450px] lg:ml-40 lg:mt-28 lg:h-[500px] lg:max-w-[420px]">
             <img
               src="https://images.unsplash.com/photo-1621605815971-fbc98d665033?q=80&w=1974&auto=format&fit=crop"
-              alt=""
+              alt="Barber giving a professional haircut"
               className="h-full w-full object-cover"
             />
           </div>
         </div>
 
-        {/* Right Content */}
         <div>
-          
-          {/* Badge */}
-          <div className="mb-8 inline-flex rounded-full border border-[#D4A85A]/30 bg-[#D4A85A]/10 px-6 py-3">
-            <p className="text-sm uppercase tracking-[0.25em] text-[#D4A85A]">
+          <div className="mb-6 inline-flex rounded-full border border-[#D4A85A]/30 bg-[#D4A85A]/10 px-5 py-2.5 sm:mb-8 sm:px-6 sm:py-3">
+            <p className="text-xs font-medium uppercase tracking-[0.22em] text-[#D4A85A] sm:text-sm">
               Our Story
             </p>
           </div>
 
-          {/* Heading */}
-          <h2 className="max-w-2xl text-5xl font-bold leading-tight sm:text-6xl">
+          <h2 className="max-w-2xl text-[2.4rem] font-bold leading-[1.05] sm:text-5xl lg:text-6xl">
             A Legacy of
-            <span className="block text-[#D4A85A]">
-              Craftsmanship
-            </span>
+            <span className="block text-[#D4A85A]">Craftsmanship</span>
           </h2>
 
-          {/* Paragraphs */}
-          <div className="mt-10 space-y-8 text-lg font-light leading-relaxed text-gray-300">
+          <div className="mt-7 space-y-5 text-base font-light leading-relaxed text-gray-300 sm:mt-8 sm:text-lg lg:mt-10 lg:space-y-7">
             <p>
-              Since 2009, Main Street Barbershop has been the
-              cornerstone of men’s grooming in our community.
-              What started as a single chair operation has grown
-              into a premium destination where tradition meets
-              contemporary style.
+              Since 2009, Main Street Barbershop has been the cornerstone of
+              men’s grooming in our community. What started as a single chair
+              operation has grown into a premium destination where tradition
+              meets contemporary style.
             </p>
 
             <p>
-              Our master barbers bring decades of combined
-              experience, blending time-honored techniques with
-              modern trends to deliver exceptional results every
-              time. We believe in the power of a great haircut
-              to transform not just your look, but your confidence.
+              Our master barbers bring decades of combined experience, blending
+              time-honored techniques with modern trends to deliver exceptional
+              results every time. We believe in the power of a great haircut to
+              transform not just your look, but your confidence.
             </p>
           </div>
 
-          {/* Feature Grid */}
-          <div className="mt-14 grid gap-6 sm:grid-cols-2">
-            
-            <div className="rounded-2xl border border-white/10 bg-gradient-to-b from-white/[0.03] to-transparent p-8">
-              <FiScissors className="text-4xl text-[#D4A85A]" />
+          <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:mt-12 lg:gap-6">
+            {features.map((feature) => {
+              const Icon = feature.icon;
 
-              <h3 className="mt-8 text-2xl font-semibold">
-                Precision
-              </h3>
+              return (
+                <div
+                  key={feature.title}
+                  className="rounded-2xl border border-white/10 bg-gradient-to-b from-white/[0.05] to-white/[0.02] p-6 transition duration-300 hover:border-[#D4A85A]/40 sm:p-7 lg:p-8"
+                >
+                  <Icon
+                    aria-hidden="true"
+                    className="text-3xl text-[#D4A85A] sm:text-4xl"
+                  />
 
-              <p className="mt-4 text-gray-400">
-                Every cut is crafted with meticulous attention
-                to detail and years of expertise.
-              </p>
-            </div>
+                  <h3 className="mt-6 text-xl font-semibold sm:mt-7 sm:text-2xl">
+                    {feature.title}
+                  </h3>
 
-            <div className="rounded-2xl border border-white/10 bg-gradient-to-b from-white/[0.03] to-transparent p-8">
-              <FiAward className="text-4xl text-[#D4A85A]" />
-
-              <h3 className="mt-8 text-2xl font-semibold">
-                Excellence
-              </h3>
-
-              <p className="mt-4 text-gray-400">
-                We maintain the highest standards in service,
-                technique, and customer care.
-              </p>
-            </div>
-
-            <div className="rounded-2xl border border-white/10 bg-gradient-to-b from-white/[0.03] to-transparent p-8">
-              <FiHeart className="text-4xl text-[#D4A85A]" />
-
-              <h3 className="mt-8 text-2xl font-semibold">
-                Tradition
-              </h3>
-
-              <p className="mt-4 text-gray-400">
-                Classic barbering techniques passed down through
-                generations of master barbers.
-              </p>
-            </div>
-
-            <div className="rounded-2xl border border-white/10 bg-gradient-to-b from-white/[0.03] to-transparent p-8">
-              <FiUsers className="text-4xl text-[#D4A85A]" />
-
-              <h3 className="mt-8 text-2xl font-semibold">
-                Community
-              </h3>
-
-              <p className="mt-4 text-gray-400">
-                More than a barbershop — a gathering place where
-                neighbors become family.
-              </p>
-            </div>
+                  <p className="mt-3 text-sm leading-relaxed text-gray-400 sm:mt-4 sm:text-base">
+                    {feature.text}
+                  </p>
+                </div>
+              );
+            })}
           </div>
         </div>
       </div>

@@ -48,26 +48,26 @@ const FAQ = () => {
   const [openIndex, setOpenIndex] = useState(0);
 
   return (
-    <section className="bg-black px-6 py-28 text-white lg:px-8">
+    <section className="bg-black px-5 py-20 text-white sm:px-6 sm:py-24 lg:px-8 lg:py-28">
       <div className="mx-auto max-w-5xl">
         <div className="mx-auto max-w-3xl text-center">
-          <div className="mb-8 inline-flex rounded-full border border-[#D4A85A]/30 bg-[#D4A85A]/10 px-6 py-3">
-            <p className="text-sm uppercase tracking-[0.25em] text-[#D4A85A]">
+          <div className="mb-6 inline-flex rounded-full border border-[#D4A85A]/30 bg-[#D4A85A]/10 px-5 py-2.5 sm:mb-8 sm:px-6 sm:py-3">
+            <p className="text-xs font-medium uppercase tracking-[0.22em] text-[#D4A85A] sm:text-sm">
               Questions?
             </p>
           </div>
 
-          <h2 className="text-5xl font-bold leading-tight sm:text-6xl">
+          <h2 className="text-[2.4rem] font-bold leading-[1.05] sm:text-5xl lg:text-6xl">
             Frequently Asked
             <span className="block text-[#D4A85A]">Questions</span>
           </h2>
 
-          <p className="mt-8 text-lg font-light text-gray-300">
+          <p className="mx-auto mt-4 max-w-2xl text-base font-light leading-relaxed text-gray-300 sm:mt-6 sm:text-lg">
             Everything you need to know about our services and policies.
           </p>
         </div>
 
-        <div className="mt-20 space-y-5">
+        <div className="mt-12 space-y-4 sm:mt-16 sm:space-y-5">
           {faqs.map((faq, index) => {
             const isOpen = openIndex === index;
 
@@ -75,14 +75,14 @@ const FAQ = () => {
               <div
                 key={faq.question}
                 className={`overflow-hidden rounded-xl border transition ${
-                  isOpen
-                    ? "border-[#D4A85A]/40"
-                    : "border-white/10"
+                  isOpen ? "border-[#D4A85A]/40" : "border-white/10"
                 } bg-gradient-to-b from-white/[0.05] to-white/[0.02]`}
               >
                 <button
                   onClick={() => setOpenIndex(isOpen ? null : index)}
-                  className="flex w-full items-center justify-between px-8 py-6 text-left text-xl font-semibold"
+                  className="flex w-full items-center justify-between px-5 py-5 text-left text-lg font-semibold sm:px-6 sm:py-6 sm:text-xl"
+                  aria-expanded={isOpen}
+                  aria-controls={`faq-${index}`}
                 >
                   {faq.question}
 
@@ -91,11 +91,15 @@ const FAQ = () => {
                       isOpen ? "rotate-180" : ""
                     }`}
                     size={22}
+                    aria-hidden="true"
                   />
                 </button>
 
                 {isOpen && (
-                  <div className="border-t border-white/10 px-8 py-6 text-lg leading-relaxed text-gray-300">
+                  <div
+                    id={`faq-${index}`}
+                    className="border-t border-white/10 px-5 py-5 text-base leading-relaxed text-gray-300 sm:px-6 sm:py-6 sm:text-lg"
+                  >
                     {faq.answer}
                   </div>
                 )}
@@ -104,16 +108,19 @@ const FAQ = () => {
           })}
         </div>
 
-        <div className="mt-16 rounded-2xl border border-white/10 bg-gradient-to-b from-white/[0.05] to-white/[0.02] p-12 text-center">
-          <h3 className="text-2xl font-bold">Still have questions?</h3>
+        <div className="mt-12 rounded-2xl border border-white/10 bg-gradient-to-b from-white/[0.05] to-white/[0.02] p-8 text-center sm:mt-16 sm:p-12">
+          <h3 className="text-2xl font-bold sm:text-3xl">Still have questions?</h3>
 
-          <p className="mt-4 text-gray-300">
+          <p className="mt-4 text-gray-300 sm:mt-5 sm:text-lg">
             Our team is here to help. Give us a call or stop by the shop.
           </p>
 
-          <button className="mt-8 rounded-lg bg-[#D4A85A] px-10 py-4 font-semibold text-black">
+          <a
+            href="#contact"
+            className="mt-6 inline-block rounded-lg bg-[#D4A85A] px-8 py-3 text-lg font-semibold text-black transition duration-300 hover:bg-[#e4bd72] focus:outline-none focus:ring-2 focus:ring-[#D4A85A] focus:ring-offset-4 focus:ring-offset-black sm:mt-8 sm:px-10 sm:py-4"
+          >
             Contact Us
-          </button>
+          </a>
         </div>
       </div>
     </section>

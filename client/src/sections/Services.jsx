@@ -60,38 +60,41 @@ const services = [
 
 const Services = () => {
   return (
-    <section id="services" className="bg-black px-6 py-28 text-white lg:px-8">
+    <section
+      id="services"
+      className="bg-black px-5 py-20 text-white sm:px-6 sm:py-24 lg:px-8 lg:py-28"
+    >
       <div className="mx-auto max-w-7xl">
         <div className="mx-auto max-w-3xl text-center">
-          <div className="mb-8 inline-flex rounded-full border border-[#D4A85A]/30 bg-[#D4A85A]/10 px-6 py-3">
-            <p className="text-sm uppercase tracking-[0.25em] text-[#D4A85A]">
+          <div className="mb-6 inline-flex rounded-full border border-[#D4A85A]/30 bg-[#D4A85A]/10 px-5 py-2.5 sm:mb-8 sm:px-6 sm:py-3">
+            <p className="text-xs font-medium uppercase tracking-[0.22em] text-[#D4A85A] sm:text-sm">
               Premium Services
             </p>
           </div>
 
-          <h2 className="text-5xl font-bold leading-tight sm:text-6xl">
+          <h2 className="text-[2.4rem] font-bold leading-[1.05] sm:text-5xl lg:text-6xl">
             Expert Grooming
             <span className="block text-[#D4A85A]">Services</span>
           </h2>
 
-          <p className="mt-8 text-lg font-light leading-relaxed text-gray-300">
+          <p className="mx-auto mt-6 max-w-2xl text-base font-light leading-relaxed text-gray-300 sm:mt-8 sm:text-lg">
             From classic cuts to modern fades, our services are designed to make
             you look and feel your best.
           </p>
         </div>
 
-        <div className="mt-20 grid gap-8 lg:grid-cols-3">
+        <div className="mt-12 grid gap-5 sm:mt-16 sm:grid-cols-2 sm:gap-6 lg:mt-20 lg:grid-cols-3 lg:gap-8">
           {services.map((service) => {
             const Icon = service.icon;
 
             return (
-              <div
+              <article
                 key={service.title}
-                className="group rounded-2xl border border-white/10 bg-gradient-to-b from-white/[0.05] to-white/[0.02] p-8 transition duration-300 hover:border-[#D4A85A]/50 hover:shadow-[0_0_40px_rgba(212,168,90,0.12)]"
+                className="group flex h-full flex-col rounded-2xl border border-white/10 bg-gradient-to-b from-white/[0.05] to-white/[0.02] p-6 transition duration-300 hover:border-[#D4A85A]/50 hover:shadow-[0_0_40px_rgba(212,168,90,0.12)] sm:p-7 lg:p-8"
               >
-                <div className="flex items-start justify-between">
-                  <div className="flex h-14 w-14 items-center justify-center rounded-lg bg-[#D4A85A]/10 text-[#D4A85A]">
-                    <Icon size={26} strokeWidth={1.8} />
+                <div className="flex items-start justify-between gap-4">
+                  <div className="flex h-13 w-13 shrink-0 items-center justify-center rounded-xl bg-[#D4A85A]/10 text-[#D4A85A] sm:h-14 sm:w-14">
+                    <Icon aria-hidden="true" size={26} strokeWidth={1.8} />
                   </div>
 
                   <p className="text-3xl font-bold text-[#D4A85A]">
@@ -99,27 +102,33 @@ const Services = () => {
                   </p>
                 </div>
 
-                <h3 className="mt-8 text-2xl font-bold">
+                <h3 className="mt-7 text-2xl font-bold sm:mt-8">
                   {service.title}
                 </h3>
 
-                <p className="mt-5 min-h-[96px] border-b border-white/10 pb-7 text-[16px] font-light leading-relaxed text-gray-300">
+                <p className="mt-4 border-b border-white/10 pb-6 text-base font-light leading-relaxed text-gray-300 lg:min-h-[128px]">
                   {service.description}
                 </p>
 
                 <ul className="mt-6 space-y-3 text-[15px] text-gray-300">
                   {service.features.map((feature) => (
                     <li key={feature} className="flex items-center gap-3">
-                      <span className="h-1.5 w-1.5 rounded-full bg-[#D4A85A]" />
-                      {feature}
+                      <span
+                        aria-hidden="true"
+                        className="h-1.5 w-1.5 shrink-0 rounded-full bg-[#D4A85A]"
+                      />
+                      <span>{feature}</span>
                     </li>
                   ))}
                 </ul>
 
-                <button className="mt-10 w-full rounded-lg border border-white/10 bg-white/[0.04] px-6 py-4 font-medium transition duration-300 hover:border-[#D4A85A]/50 hover:bg-[#D4A85A] hover:text-black">
+                <a
+                  href="#contact"
+                  className="mt-8 flex w-full items-center justify-center rounded-lg border border-white/10 bg-white/[0.04] px-6 py-4 font-semibold transition duration-300 hover:border-[#D4A85A]/50 hover:bg-[#D4A85A] hover:text-black focus:outline-none focus:ring-2 focus:ring-[#D4A85A] focus:ring-offset-4 focus:ring-offset-black sm:mt-10"
+                >
                   Book Now
-                </button>
-              </div>
+                </a>
+              </article>
             );
           })}
         </div>
