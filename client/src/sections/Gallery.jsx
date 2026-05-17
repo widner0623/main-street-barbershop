@@ -1,3 +1,5 @@
+import { motion } from "framer-motion";
+
 const galleryImages = [
   {
     label: "Fresh Fade",
@@ -31,14 +33,32 @@ const galleryImages = [
   },
 ];
 
+const containerVariants = {
+  hidden: {},
+  show: {
+    transition: { staggerChildren: 0.12, delayChildren: 0.1 },
+  },
+};
+
+const fadeUp = {
+  hidden: { opacity: 0, y: 28 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.7, ease: "easeOut" } },
+};
+
 const Gallery = () => {
   return (
     <section
       id="gallery"
       className="bg-black px-5 py-20 text-white sm:px-6 sm:py-24 lg:px-8 lg:py-28"
     >
-      <div className="mx-auto max-w-7xl">
-        <div className="mx-auto max-w-3xl text-center">
+      <motion.div
+        className="mx-auto max-w-7xl"
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true, amount: 0.2 }}
+        variants={containerVariants}
+      >
+        <motion.div variants={fadeUp} className="mx-auto max-w-3xl text-center">
           <div className="mb-6 inline-flex rounded-full border border-[#D4A85A]/30 bg-[#D4A85A]/10 px-5 py-2.5 sm:mb-8 sm:px-6 sm:py-3">
             <p className="text-xs font-medium uppercase tracking-[0.22em] text-[#D4A85A] sm:text-sm">
               Our Work
@@ -53,12 +73,16 @@ const Gallery = () => {
           <p className="mx-auto mt-6 max-w-2xl text-base font-light leading-relaxed text-gray-300 sm:mt-8 sm:text-lg">
             Explore our portfolio of precision cuts, fades, and grooming work.
           </p>
-        </div>
+        </motion.div>
 
-        <div className="mt-12 grid gap-5 sm:mt-16 sm:grid-cols-2 lg:mt-20 lg:grid-cols-3 lg:gap-6">
+        <motion.div
+          variants={containerVariants}
+          className="mt-12 grid gap-5 sm:mt-16 sm:grid-cols-2 lg:mt-20 lg:grid-cols-3 lg:gap-6"
+        >
           {galleryImages.map((item) => (
-            <article
+            <motion.article
               key={item.label}
+              variants={fadeUp}
               className="group relative overflow-hidden rounded-2xl border border-white/10 bg-white/[0.03]"
             >
               <img
@@ -75,10 +99,10 @@ const Gallery = () => {
                   {item.label}
                 </span>
               </div>
-            </article>
+            </motion.article>
           ))}
-        </div>
-      </div>
+        </motion.div>
+      </motion.div>
     </section>
   );
 };

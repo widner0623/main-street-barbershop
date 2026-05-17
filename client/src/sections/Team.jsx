@@ -1,5 +1,6 @@
 import { Award } from "lucide-react";
 import { FaInstagram } from "react-icons/fa";
+import { motion } from "framer-motion";
 
 const team = [
   {
@@ -22,14 +23,35 @@ const team = [
   },
 ];
 
+const containerVariants = {
+  hidden: {},
+  show: {
+    transition: {
+      staggerChildren: 0.15,
+      delayChildren: 0.1,
+    },
+  },
+};
+
+const fadeUp = {
+  hidden: { opacity: 0, y: 28 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.7, ease: "easeOut" } },
+};
+
 const Team = () => {
   return (
     <section
       id="team"
       className="bg-black px-5 py-20 text-white sm:px-6 sm:py-24 lg:px-8 lg:py-28"
     >
-      <div className="mx-auto max-w-7xl">
-        <div className="mx-auto max-w-3xl text-center">
+      <motion.div
+        className="mx-auto max-w-7xl"
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true, amount: 0.25 }}
+        variants={containerVariants}
+      >
+        <motion.div variants={fadeUp} className="mx-auto max-w-3xl text-center">
           <div className="mb-6 inline-flex rounded-full border border-[#D4A85A]/30 bg-[#D4A85A]/10 px-5 py-2.5 sm:mb-8 sm:px-6 sm:py-3">
             <p className="text-xs font-medium uppercase tracking-[0.22em] text-[#D4A85A] sm:text-sm">
               Meet The Team
@@ -45,11 +67,19 @@ const Team = () => {
             Our award-winning team brings passion, precision, and personality
             to every appointment.
           </p>
-        </div>
+        </motion.div>
 
-        <div className="mt-12 grid gap-10 sm:mt-16 lg:mt-20 lg:grid-cols-2">
+        <motion.div
+          variants={containerVariants}
+          className="mt-12 grid gap-10 sm:mt-16 lg:mt-20 lg:grid-cols-2"
+        >
           {team.map((member) => (
-            <article key={member.name} className="group">
+            <motion.article
+              key={member.name}
+              variants={fadeUp}
+              whileHover={{ y: -4 }}
+              className="group"
+            >
               <div className="relative overflow-hidden rounded-2xl border border-white/10 bg-white/[0.03]">
                 <img
                   src={member.image}
@@ -76,10 +106,8 @@ const Team = () => {
                 </div>
               </div>
 
-              <div className="mt-6 sm:mt-8">
-                <h3 className="text-3xl font-bold sm:text-4xl">
-                  {member.name}
-                </h3>
+              <motion.div variants={fadeUp} className="mt-6 sm:mt-8">
+                <h3 className="text-3xl font-bold sm:text-4xl">{member.name}</h3>
 
                 <p className="mt-2 text-xl text-[#D4A85A] sm:mt-3 sm:text-2xl">
                   {member.role}
@@ -112,11 +140,11 @@ const Team = () => {
                 >
                   Book with {member.name.split(" ")[0]}
                 </a>
-              </div>
-            </article>
+              </motion.div>
+            </motion.article>
           ))}
-        </div>
-      </div>
+        </motion.div>
+      </motion.div>
     </section>
   );
 };

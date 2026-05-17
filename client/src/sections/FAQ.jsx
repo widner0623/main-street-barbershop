@@ -1,5 +1,6 @@
 import { ChevronDown } from "lucide-react";
 import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 
 const faqs = [
   {
@@ -44,36 +45,61 @@ const faqs = [
   },
 ];
 
+const fadeUp = {
+  hidden: { opacity: 0, y: 24 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
+};
+
 const FAQ = () => {
-  const [openIndex, setOpenIndex] = useState(0);
+  const [openIndex, setOpenIndex] = useState(null);
 
   return (
     <section className="bg-black px-5 py-20 text-white sm:px-6 sm:py-24 lg:px-8 lg:py-28">
       <div className="mx-auto max-w-5xl">
-        <div className="mx-auto max-w-3xl text-center">
-          <div className="mb-6 inline-flex rounded-full border border-[#D4A85A]/30 bg-[#D4A85A]/10 px-5 py-2.5 sm:mb-8 sm:px-6 sm:py-3">
-            <p className="text-xs font-medium uppercase tracking-[0.22em] text-[#D4A85A] sm:text-sm">
-              Questions?
-            </p>
-          </div>
+        <motion.div
+          className="mx-auto max-w-3xl text-center"
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, amount: 0.25 }}
+          variants={{ show: { transition: { staggerChildren: 0.12 } } }}
+        >
+          <motion.div variants={fadeUp}>
+            <div className="mb-6 inline-flex rounded-full border border-[#D4A85A]/30 bg-[#D4A85A]/10 px-5 py-2.5 sm:mb-8 sm:px-6 sm:py-3">
+              <p className="text-xs font-medium uppercase tracking-[0.22em] text-[#D4A85A] sm:text-sm">
+                Questions?
+              </p>
+            </div>
+          </motion.div>
 
-          <h2 className="text-[2.4rem] font-bold leading-[1.05] sm:text-5xl lg:text-6xl">
+          <motion.h2
+            variants={fadeUp}
+            className="text-[2.4rem] font-bold leading-[1.05] sm:text-5xl lg:text-6xl"
+          >
             Frequently Asked
             <span className="block text-[#D4A85A]">Questions</span>
-          </h2>
+          </motion.h2>
 
-          <p className="mx-auto mt-4 max-w-2xl text-base font-light leading-relaxed text-gray-300 sm:mt-6 sm:text-lg">
+          <motion.p
+            variants={fadeUp}
+            className="mx-auto mt-4 max-w-2xl text-base font-light leading-relaxed text-gray-300 sm:mt-6 sm:text-lg"
+          >
             Everything you need to know about our services and policies.
-          </p>
-        </div>
+          </motion.p>
+        </motion.div>
 
-        <div className="mt-12 space-y-4 sm:mt-16 sm:space-y-5">
+        <motion.div
+          className="mt-12 space-y-4 sm:mt-16 sm:space-y-5"
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, amount: 0.2 }}
+          variants={{ show: { transition: { staggerChildren: 0.12 } } }}
+        >
           {faqs.map((faq, index) => {
             const isOpen = openIndex === index;
-
             return (
-              <div
+              <motion.div
                 key={faq.question}
+                variants={fadeUp}
                 className={`overflow-hidden rounded-xl border transition ${
                   isOpen ? "border-[#D4A85A]/40" : "border-white/10"
                 } bg-gradient-to-b from-white/[0.05] to-white/[0.02]`}
@@ -85,7 +111,6 @@ const FAQ = () => {
                   aria-controls={`faq-${index}`}
                 >
                   {faq.question}
-
                   <ChevronDown
                     className={`text-[#D4A85A] transition duration-300 ${
                       isOpen ? "rotate-180" : ""
@@ -95,20 +120,31 @@ const FAQ = () => {
                   />
                 </button>
 
-                {isOpen && (
-                  <div
-                    id={`faq-${index}`}
-                    className="border-t border-white/10 px-5 py-5 text-base leading-relaxed text-gray-300 sm:px-6 sm:py-6 sm:text-lg"
-                  >
-                    {faq.answer}
-                  </div>
-                )}
-              </div>
+                <AnimatePresence initial={false}>
+                  {isOpen && (
+                    <motion.div
+                      id={`faq-${index}`}
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: "auto", opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.25, ease: "easeOut" }}
+                      className="overflow-hidden border-t border-white/10"
+                    >
+                      <div className="px-5 py-5 text-base leading-relaxed text-gray-300 sm:px-6 sm:py-6 sm:text-lg">
+                        {faq.answer}
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </motion.div>
             );
           })}
-        </div>
+        </motion.div>
 
-        <div className="mt-12 rounded-2xl border border-white/10 bg-gradient-to-b from-white/[0.05] to-white/[0.02] p-8 text-center sm:mt-16 sm:p-12">
+        <motion.div
+          variants={fadeUp}
+          className="mt-12 rounded-2xl border border-white/10 bg-gradient-to-b from-white/[0.05] to-white/[0.02] p-8 text-center sm:mt-16 sm:p-12"
+        >
           <h3 className="text-2xl font-bold sm:text-3xl">Still have questions?</h3>
 
           <p className="mt-4 text-gray-300 sm:mt-5 sm:text-lg">
@@ -121,7 +157,7 @@ const FAQ = () => {
           >
             Contact Us
           </a>
-        </div>
+        </motion.div>
       </div>
     </section>
   );

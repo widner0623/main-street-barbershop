@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import {
   Scissors,
   Sparkles,
@@ -58,14 +59,39 @@ const services = [
   },
 ];
 
+const containerVariants = {
+  hidden: {},
+  show: {
+    transition: {
+      staggerChildren: 0.12,
+      delayChildren: 0.1,
+    },
+  },
+};
+
+const fadeUp = {
+  hidden: { opacity: 0, y: 28 },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.7, ease: "easeOut" },
+  },
+};
+
 const Services = () => {
   return (
     <section
       id="services"
       className="bg-black px-5 py-20 text-white sm:px-6 sm:py-24 lg:px-8 lg:py-28"
     >
-      <div className="mx-auto max-w-7xl">
-        <div className="mx-auto max-w-3xl text-center">
+      <motion.div
+        className="mx-auto max-w-7xl"
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true, amount: 0.18 }}
+        variants={containerVariants}
+      >
+        <motion.div variants={fadeUp} className="mx-auto max-w-3xl text-center">
           <div className="mb-6 inline-flex rounded-full border border-[#D4A85A]/30 bg-[#D4A85A]/10 px-5 py-2.5 sm:mb-8 sm:px-6 sm:py-3">
             <p className="text-xs font-medium uppercase tracking-[0.22em] text-[#D4A85A] sm:text-sm">
               Premium Services
@@ -81,15 +107,20 @@ const Services = () => {
             From classic cuts to modern fades, our services are designed to make
             you look and feel your best.
           </p>
-        </div>
+        </motion.div>
 
-        <div className="mt-12 grid gap-5 sm:mt-16 sm:grid-cols-2 sm:gap-6 lg:mt-20 lg:grid-cols-3 lg:gap-8">
+        <motion.div
+          variants={containerVariants}
+          className="mt-12 grid gap-5 sm:mt-16 sm:grid-cols-2 sm:gap-6 lg:mt-20 lg:grid-cols-3 lg:gap-8"
+        >
           {services.map((service) => {
             const Icon = service.icon;
 
             return (
-              <article
+              <motion.article
                 key={service.title}
+                variants={fadeUp}
+                whileHover={{ y: -6 }}
                 className="group flex h-full flex-col rounded-2xl border border-white/10 bg-gradient-to-b from-white/[0.05] to-white/[0.02] p-6 transition duration-300 hover:border-[#D4A85A]/50 hover:shadow-[0_0_40px_rgba(212,168,90,0.12)] sm:p-7 lg:p-8"
               >
                 <div className="flex items-start justify-between gap-4">
@@ -128,11 +159,11 @@ const Services = () => {
                 >
                   Book Now
                 </a>
-              </article>
+              </motion.article>
             );
           })}
-        </div>
-      </div>
+        </motion.div>
+      </motion.div>
     </section>
   );
 };

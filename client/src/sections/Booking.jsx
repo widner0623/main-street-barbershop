@@ -1,4 +1,24 @@
+import { motion } from "framer-motion";
 import { CalendarDays, Clock, MapPin, Phone } from "lucide-react";
+
+const containerVariants = {
+  hidden: {},
+  show: {
+    transition: {
+      staggerChildren: 0.14,
+      delayChildren: 0.1,
+    },
+  },
+};
+
+const fadeUp = {
+  hidden: { opacity: 0, y: 28 },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.7, ease: "easeOut" },
+  },
+};
 
 const Booking = () => {
   return (
@@ -15,8 +35,14 @@ const Booking = () => {
       <div className="absolute inset-0 bg-black/85" />
       <div className="absolute inset-0 bg-gradient-to-b from-black via-black/75 to-black" />
 
-      <div className="relative z-10 mx-auto max-w-7xl">
-        <div className="mx-auto max-w-4xl text-center">
+      <motion.div
+        className="relative z-10 mx-auto max-w-7xl"
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true, amount: 0.22 }}
+        variants={containerVariants}
+      >
+        <motion.div variants={fadeUp} className="mx-auto max-w-4xl text-center">
           <div className="mb-6 inline-flex rounded-full border border-[#D4A85A]/30 bg-[#D4A85A]/10 px-5 py-2.5 backdrop-blur-sm sm:mb-8 sm:px-6 sm:py-3">
             <p className="text-xs font-medium uppercase tracking-[0.22em] text-[#D4A85A] sm:text-sm">
               Book Your Appointment
@@ -32,10 +58,15 @@ const Booking = () => {
             Book your appointment online or give us a call. Walk-ins always
             welcome, but appointments get priority seating.
           </p>
-        </div>
+        </motion.div>
 
-        <div className="mt-12 grid gap-5 sm:mt-16 sm:gap-6 lg:mt-20 lg:grid-cols-2 lg:gap-8">
-          <a
+        <motion.div
+          variants={containerVariants}
+          className="mt-12 grid gap-5 sm:mt-16 sm:gap-6 lg:mt-20 lg:grid-cols-2 lg:gap-8"
+        >
+          <motion.a
+            variants={fadeUp}
+            whileHover={{ y: -6 }}
             href="tel:5551234567"
             className="group rounded-2xl border border-white/10 bg-white/[0.04] p-7 text-center backdrop-blur-md transition duration-300 hover:border-[#D4A85A]/50 hover:bg-white/[0.07] focus:outline-none focus:ring-2 focus:ring-[#D4A85A] focus:ring-offset-4 focus:ring-offset-black sm:p-10 lg:p-12"
           >
@@ -56,9 +87,11 @@ const Booking = () => {
             <p className="mt-5 break-words text-2xl font-bold tracking-wide text-[#D4A85A] sm:mt-6 sm:text-3xl">
               (555) 123-4567
             </p>
-          </a>
+          </motion.a>
 
-          <a
+          <motion.a
+            variants={fadeUp}
+            whileHover={{ y: -6 }}
             href="#contact"
             className="group rounded-2xl bg-[#D4A85A] p-7 text-center text-black shadow-[0_0_50px_rgba(212,168,90,0.18)] transition duration-300 hover:bg-[#e4bd72] focus:outline-none focus:ring-2 focus:ring-[#D4A85A] focus:ring-offset-4 focus:ring-offset-black sm:p-10 lg:p-12"
           >
@@ -75,12 +108,18 @@ const Booking = () => {
             <span className="mt-6 inline-flex text-lg font-bold sm:mt-7">
               Choose Your Time →
             </span>
-          </a>
-        </div>
+          </motion.a>
+        </motion.div>
 
-        <div className="mt-10 border-t border-white/10 pt-10 sm:mt-12 sm:pt-12">
+        <motion.div
+          variants={containerVariants}
+          className="mt-10 border-t border-white/10 pt-10 sm:mt-12 sm:pt-12"
+        >
           <div className="grid gap-5 sm:gap-6 lg:grid-cols-2 lg:gap-8">
-            <div className="flex flex-col gap-5 rounded-2xl border border-white/10 bg-white/[0.04] p-6 backdrop-blur-md sm:flex-row sm:items-center sm:gap-6 sm:p-8">
+            <motion.div
+              variants={fadeUp}
+              className="flex flex-col gap-5 rounded-2xl border border-white/10 bg-white/[0.04] p-6 backdrop-blur-md sm:flex-row sm:items-center sm:gap-6 sm:p-8"
+            >
               <Clock
                 aria-hidden="true"
                 className="shrink-0 text-[#D4A85A]"
@@ -95,9 +134,12 @@ const Booking = () => {
                   Sat: 8am-6pm · Sun: 10am-4pm
                 </p>
               </div>
-            </div>
+            </motion.div>
 
-            <div className="flex flex-col gap-5 rounded-2xl border border-white/10 bg-white/[0.04] p-6 backdrop-blur-md sm:flex-row sm:items-center sm:gap-6 sm:p-8">
+            <motion.div
+              variants={fadeUp}
+              className="flex flex-col gap-5 rounded-2xl border border-white/10 bg-white/[0.04] p-6 backdrop-blur-md sm:flex-row sm:items-center sm:gap-6 sm:p-8"
+            >
               <MapPin
                 aria-hidden="true"
                 className="shrink-0 text-[#D4A85A]"
@@ -112,10 +154,10 @@ const Booking = () => {
                   Downtown, CA 90210
                 </p>
               </div>
-            </div>
+            </motion.div>
           </div>
-        </div>
-      </div>
+        </motion.div>
+      </motion.div>
     </section>
   );
 };
