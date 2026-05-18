@@ -64,4 +64,14 @@ const bookingSchema = new mongoose.Schema(
   }
 );
 
+bookingSchema.index(
+  { appointmentDate: 1, barber: 1 },
+  {
+    unique: true,
+    partialFilterExpression: {
+      status: { $ne: "cancelled" },
+    },
+  }
+);
+
 export default mongoose.model("Booking", bookingSchema);

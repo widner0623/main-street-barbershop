@@ -38,7 +38,7 @@ const fadeUp = {
   show: { opacity: 1, y: 0, transition: { duration: 0.7, ease: "easeOut" } },
 };
 
-const Team = () => {
+const Team = ({ openBookingModal }) => {
   return (
     <section
       id="team"
@@ -95,7 +95,7 @@ const Team = () => {
 
                 <a
                   href="#contact"
-                  aria-label={`Book with ${member.name}`}
+                  aria-label={`View ${member.name} on Instagram`}
                   className="absolute bottom-5 right-5 flex h-12 w-12 items-center justify-center rounded-full border border-white/20 bg-white/10 text-white backdrop-blur-md transition hover:border-[#D4A85A]/50 hover:bg-[#D4A85A] hover:text-black focus:outline-none focus:ring-2 focus:ring-[#D4A85A] sm:bottom-6 sm:right-6 sm:h-14 sm:w-14"
                 >
                   <FaInstagram aria-hidden="true" size={22} />
@@ -134,12 +134,13 @@ const Team = () => {
                   </div>
                 </div>
 
-                <a
-                  href="#contact"
+                <button
+                  type="button"
+                  onClick={() => openBookingModal({ barber: member.name })}
                   className="mt-8 flex w-full items-center justify-center rounded-xl border border-white/10 bg-white/[0.03] px-6 py-4 text-base font-semibold transition duration-300 hover:border-[#D4A85A]/50 hover:bg-[#D4A85A] hover:text-black focus:outline-none focus:ring-2 focus:ring-[#D4A85A] focus:ring-offset-4 focus:ring-offset-black sm:mt-10 sm:py-5 sm:text-lg"
                 >
                   Book with {member.name.split(" ")[0]}
-                </a>
+                </button>
               </motion.div>
             </motion.article>
           ))}

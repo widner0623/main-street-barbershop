@@ -78,7 +78,7 @@ const fadeUp = {
   },
 };
 
-const Services = () => {
+const Services = ({ openBookingModal }) => {
   return (
     <section
       id="services"
@@ -153,12 +153,13 @@ const Services = () => {
                   ))}
                 </ul>
 
-                <a
-                  href="#contact"
+                <button
+                  type="button"
+                  onClick={() => openBookingModal({ service: service.title })}
                   className="mt-8 flex w-full items-center justify-center rounded-lg border border-white/10 bg-white/[0.04] px-6 py-4 font-semibold transition duration-300 hover:border-[#D4A85A]/50 hover:bg-[#D4A85A] hover:text-black focus:outline-none focus:ring-2 focus:ring-[#D4A85A] focus:ring-offset-4 focus:ring-offset-black sm:mt-10"
                 >
                   Book Now
-                </a>
+                </button>
               </motion.article>
             );
           })}

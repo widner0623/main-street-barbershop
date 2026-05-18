@@ -3,6 +3,7 @@ import cors from "cors";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
 import bookingRoutes from "./routes/bookings.js";
+import availabilityRoutes from "./routes/availabilityRoutes.js";
 
 dotenv.config();
 
@@ -14,6 +15,7 @@ app.use(express.json());
 
 // Routes
 app.use("/api/bookings", bookingRoutes);
+app.use("/api/availability", availabilityRoutes);
 
 // Root endpoint
 app.get("/", (req, res) => {

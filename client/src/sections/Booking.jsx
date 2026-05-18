@@ -20,7 +20,7 @@ const fadeUp = {
   },
 };
 
-const Booking = () => {
+const Booking = ({ openBookingModal }) => {
   return (
     <section
       id="contact"
@@ -89,10 +89,11 @@ const Booking = () => {
             </p>
           </motion.a>
 
-          <motion.a
+          <motion.button
+            type="button"
             variants={fadeUp}
             whileHover={{ y: -6 }}
-            href="#contact"
+            onClick={openBookingModal}
             className="group rounded-2xl bg-[#D4A85A] p-7 text-center text-black shadow-[0_0_50px_rgba(212,168,90,0.18)] transition duration-300 hover:bg-[#e4bd72] focus:outline-none focus:ring-2 focus:ring-[#D4A85A] focus:ring-offset-4 focus:ring-offset-black sm:p-10 lg:p-12"
           >
             <CalendarDays aria-hidden="true" className="mx-auto" size={44} />
@@ -108,7 +109,7 @@ const Booking = () => {
             <span className="mt-6 inline-flex text-lg font-bold sm:mt-7">
               Choose Your Time →
             </span>
-          </motion.a>
+          </motion.button>
         </motion.div>
 
         <motion.div

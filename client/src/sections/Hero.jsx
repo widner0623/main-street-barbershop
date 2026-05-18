@@ -26,7 +26,7 @@ const fadeUp = {
   },
 };
 
-const Hero = () => {
+const Hero = ({ openBookingModal }) => {
   return (
     <section
       className="relative flex min-h-screen items-center justify-center overflow-hidden bg-black"
@@ -75,13 +75,14 @@ const Hero = () => {
           variants={fadeUp}
           className="mt-10 flex w-full max-w-md flex-col gap-4 sm:max-w-none sm:flex-row sm:justify-center"
         >
-          <a
-            href="#contact"
+          <button
+            type="button"
+            onClick={openBookingModal}
             className="flex items-center justify-center gap-3 rounded-xl bg-[#D4A85A] px-8 py-4 text-base font-semibold text-black transition duration-300 hover:scale-[1.02] hover:bg-[#e4bd72] focus:outline-none focus:ring-2 focus:ring-[#D4A85A] focus:ring-offset-4 focus:ring-offset-black sm:px-10 sm:py-5 sm:text-lg"
           >
             Book Appointment
             <FiCalendar className="text-xl" />
-          </a>
+          </button>
 
           <a
             href="#services"
