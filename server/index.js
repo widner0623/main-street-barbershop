@@ -4,6 +4,7 @@ import dotenv from "dotenv";
 import mongoose from "mongoose";
 import bookingRoutes from "./routes/bookings.js";
 import availabilityRoutes from "./routes/availabilityRoutes.js";
+import squareSetupRoutes from "./routes/squareSetupRoutes.js";
 
 dotenv.config();
 
@@ -16,6 +17,7 @@ app.use(express.json());
 // Routes
 app.use("/api/bookings", bookingRoutes);
 app.use("/api/availability", availabilityRoutes);
+app.use("/api/square/setup", squareSetupRoutes);
 
 // Root endpoint
 app.get("/", (req, res) => {

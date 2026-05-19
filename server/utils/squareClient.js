@@ -1,12 +1,12 @@
-import { Client, Environment } from "square";
+import { SquareClient, SquareEnvironment } from "square";
 
 const environment =
   process.env.SQUARE_ENVIRONMENT === "production"
-    ? Environment.Production
-    : Environment.Sandbox;
+    ? SquareEnvironment.Production
+    : SquareEnvironment.Sandbox;
 
-const squareClient = new Client({
-  accessToken: process.env.SQUARE_ACCESS_TOKEN,
+const squareClient = new SquareClient({
+  token: process.env.SQUARE_ACCESS_TOKEN || "missing-token",
   environment,
 });
 

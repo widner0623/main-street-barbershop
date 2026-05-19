@@ -3,11 +3,7 @@ export const squareServiceMap = {
     duration: 30,
     variationId: "",
   },
-  "Precision Fade": {
-    duration: 30,
-    variationId: "",
-  },
-  "Beard Sculpting": {
+  "Kids Cut": {
     duration: 30,
     variationId: "",
   },
@@ -15,12 +11,20 @@ export const squareServiceMap = {
     duration: 30,
     variationId: "",
   },
-  "Kids Cut": {
+  "Beard Sculpting": {
     duration: 30,
     variationId: "",
   },
-  "The Executive": {
+  "Signature Design": {
+    duration: 30,
+    variationId: "",
+  },
+  "Precision Perm": {
     duration: 60,
+    variationId: "",
+  },
+  "The Executive": {
+    duration: 30,
     variationId: "",
   },
 };

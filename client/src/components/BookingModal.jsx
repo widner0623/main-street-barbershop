@@ -6,10 +6,11 @@ import { FiX } from "react-icons/fi";
 
 const services = [
   "Classic Haircut",
-  "Precision Fade",
-  "Beard Sculpting",
-  "Straight Razor Shave",
   "Kids Cut",
+  "Straight Razor Shave",
+  "Beard Sculpting",
+  "Signature Design",
+  "Precision Perm",
   "The Executive",
 ];
 
@@ -222,8 +223,7 @@ const BookingModal = ({
               </h2>
 
               <p className="mt-3 text-sm leading-relaxed text-gray-400 sm:text-base">
-                Fill this out and the shop will confirm your appointment as soon
-                as possible.
+                Choose your service, barber, date, and time. The shop will confirm your appointment as soon as possible.
               </p>
             </div>
 

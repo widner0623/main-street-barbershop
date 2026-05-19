@@ -87,7 +87,7 @@ const About = () => {
 
           <motion.div variants={fadeUp} className="mt-7 space-y-5 text-base font-light leading-relaxed text-gray-300 sm:mt-8 sm:text-lg lg:mt-10 lg:space-y-7">
             <p>
-              Since 2009, Main Street Barbershop has been the cornerstone of
+              Since 2025, Main Street Barbershop has been the cornerstone of
               men’s grooming in our community. What started as a single chair
               operation has grown into a premium destination where tradition
               meets contemporary style.

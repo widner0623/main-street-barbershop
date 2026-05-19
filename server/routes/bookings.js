@@ -42,13 +42,28 @@ router.post("/", async (req, res) => {
     const duration = getServiceDuration(service);
     const endDate = new Date(startDate.getTime() + duration * 60 * 1000);
 
-    const existingBooking = await Booking.findOne({
-      appointmentDate: {
-        $gte: startDate,
-        $lt: endDate,
-      },
-      barber: barber || "Any Barber",
-      status: { $ne: "cancelled" },
+    const startOfDay = new Date(startDate);
+      startOfDay.setHours(0, 0, 0, 0);
+
+      const endOfDay = new Date(startDate);
+      endOfDay.setHours(23, 59, 59, 999);
+
+      const existingBookings = await Booking.find({
+        barber: barber || "Any Barber",
+        appointmentDate: {
+          $gte: startOfDay,
+          $lte: endOfDay,
+        },
+        status: { $ne: "cancelled" },
+      });
+
+    const existingBooking = existingBookings.find((booking) => {
+      const bookingStart = new Date(booking.appointmentDate);
+      const bookingEnd = new Date(
+        bookingStart.getTime() + booking.duration * 60 * 1000
+      );
+
+      return startDate < bookingEnd && endDate > bookingStart;
     });
 
     if (existingBooking) {

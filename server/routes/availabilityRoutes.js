@@ -58,10 +58,6 @@ router.get("/", async (req, res) => {
         : {}),
     });
 
-    const mongoBookedTimes = existingBookings.map((booking) =>
-      booking.appointmentDate.toTimeString().slice(0, 5)
-    );
-
     const checkedSlots = timeSlots.map((slot) => {
       const slotStart = new Date(`${date}T${slot}:00`);
       const slotEnd = new Date(

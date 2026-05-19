@@ -6,56 +6,71 @@ import {
   UserRound,
   Smile,
   BriefcaseBusiness,
+  SprayCan,
 } from "lucide-react";
 
 const services = [
   {
     icon: Scissors,
     title: "Classic Haircut",
-    price: "$35",
+    price: "$20",
     description:
-      "Traditional scissor cut with consultation, shampoo, and styling. Includes hot towel treatment.",
-    features: ["30 minutes", "Hot towel finish", "Style consultation"],
+      "Clean and professional haircut tailored to your preferred style with detailed finishing and styling.",
+    features: ["30 minutes", "Style consultation", "Clean finish"],
   },
-  {
-    icon: Sparkles,
-    title: "Precision Fade",
-    price: "$45",
-    description:
-      "Expert fade techniques from skin to any length. Perfectly blended transitions and clean lines.",
-    features: ["45 minutes", "Multiple clipper guards", "Detailed edge work"],
-  },
-  {
-    icon: BadgeCheck,
-    title: "Beard Sculpting",
-    price: "$30",
-    description:
-      "Professional beard trimming, shaping, and conditioning. Includes beard oil application.",
-    features: ["25 minutes", "Premium beard oil", "Hot towel treatment"],
-  },
-  {
-    icon: UserRound,
-    title: "Straight Razor Shave",
-    price: "$40",
-    description:
-      "Traditional hot lather shave with straight razor. The ultimate grooming experience.",
-    features: ["40 minutes", "Multiple hot towels", "Post-shave balm"],
-  },
+
   {
     icon: Smile,
     title: "Kids Cut",
-    price: "$25",
+    price: "$15",
     description:
-      "Gentle and patient service for children under 12. Fun atmosphere, great results.",
-    features: ["20 minutes", "Patient barbers", "Lollipop included"],
+      "Friendly and comfortable haircut service for children with patience, precision, and a relaxed atmosphere.",
+    features: ["30 minutes", "Kid-friendly service", "Detailed lineup"],
   },
+
+  {
+    icon: UserRound,
+    title: "Straight Razor Shave",
+    price: "$15",
+    description:
+      "Traditional straight razor shave with hot towel preparation for a smooth, refreshing experience.",
+    features: ["30 minutes", "Hot towel prep", "Smooth razor finish"],
+  },
+
+  {
+    icon: BadgeCheck,
+    title: "Beard Sculpting",
+    price: "$15",
+    description:
+      "Precision beard trimming and shaping designed to sharpen your overall look and maintain clean lines.",
+    features: ["30 minutes", "Beard lineup", "Detailed shaping"],
+  },
+
+  {
+    icon: SprayCan,
+    title: "Signature Design",
+    price: "$5",
+    description:
+      "Custom razor designs and detailed hair art added to elevate your haircut with a unique personal touch.",
+    features: ["Quick add-on", "Custom design work", "Precision detailing"],
+  },
+
+  {
+    icon: Sparkles,
+    title: "Precision Perm",
+    price: "$70",
+    description:
+      "Professional perm service designed to add texture, volume, and long-lasting style customized to your look.",
+    features: ["60 minutes", "Custom styling", "Long-lasting texture"],
+  },
+
   {
     icon: BriefcaseBusiness,
     title: "The Executive",
-    price: "$85",
+    price: "$10",
     description:
-      "Complete grooming package: haircut, beard trim, straight razor shave, and facial treatment.",
-    features: ["90 minutes", "Full premium service", "Complimentary drink"],
+      "Premium finishing service focused on enhancing your overall look with extra detailing and refinement.",
+    features: ["30 minutes", "Premium detailing", "Enhanced finish"],
   },
 ];
 
@@ -104,8 +119,8 @@ const Services = ({ openBookingModal }) => {
           </h2>
 
           <p className="mx-auto mt-6 max-w-2xl text-base font-light leading-relaxed text-gray-300 sm:mt-8 sm:text-lg">
-            From classic cuts to modern fades, our services are designed to make
-            you look and feel your best.
+            From classic cuts to beard work, designs, and styling services, our
+            barbers help you leave looking sharp and confident.
           </p>
         </motion.div>
 
