@@ -1,32 +1,31 @@
 import express from "express";
 import Booking from "../models/Booking.js";
-import { checkCalendarAvailability } from "../utils/googleCalendar.js";
+import { squareServiceMap } from "../config/squareMappings.js";
 
 const router = express.Router();
 
 const timeSlots = [
   "09:00",
+  "09:30",
   "10:00",
+  "10:30",
   "11:00",
+  "11:30",
   "12:00",
+  "12:30",
   "13:00",
+  "13:30",
   "14:00",
+  "14:30",
   "15:00",
+  "15:30",
   "16:00",
+  "16:30",
   "17:00",
 ];
 
 const getServiceDuration = (service) => {
-  const durations = {
-    "Classic Haircut": 30,
-    "Precision Fade": 45,
-    "Beard Sculpting": 30,
-    "Straight Razor Shave": 40,
-    "Kids Cut": 20,
-    "The Executive": 90,
-  };
-
-  return durations[service] || 60;
+  return squareServiceMap[service]?.duration || 30;
 };
 
 router.get("/", async (req, res) => {
@@ -40,6 +39,7 @@ router.get("/", async (req, res) => {
     }
 
     const duration = getServiceDuration(service);
+
     const startOfDay = new Date(`${date}T00:00:00`);
     const endOfDay = new Date(`${date}T23:59:59`);
 
@@ -48,38 +48,45 @@ router.get("/", async (req, res) => {
         $gte: startOfDay,
         $lte: endOfDay,
       },
+
       status: {
         $ne: "cancelled",
       },
-      ...(barber && barber !== "Any Barber" ? { barber } : {}),
+
+      ...(barber && barber !== "Any Barber"
+        ? { barber }
+        : {}),
     });
 
-    const mongoBookedTimes = existingBookings.map((booking) => {
-      return booking.appointmentDate.toTimeString().slice(0, 5);
-    });
-
-    const checkedSlots = await Promise.all(
-      timeSlots.map(async (slot) => {
-        const slotStart = new Date(`${date}T${slot}:00`);
-        const slotEnd = new Date(slotStart.getTime() + duration * 60 * 1000);
-
-        const isBookedInMongo = mongoBookedTimes.includes(slot);
-
-        const calendarAvailability = await checkCalendarAvailability({
-          startTime: slotStart.toISOString(),
-          endTime: slotEnd.toISOString(),
-        });
-
-        const isBookedInGoogle = !calendarAvailability.isAvailable;
-
-        return {
-          time: slot,
-          available: !isBookedInMongo && !isBookedInGoogle,
-          bookedInMongo: isBookedInMongo,
-          bookedInGoogle: isBookedInGoogle,
-        };
-      })
+    const mongoBookedTimes = existingBookings.map((booking) =>
+      booking.appointmentDate.toTimeString().slice(0, 5)
     );
+
+    const checkedSlots = timeSlots.map((slot) => {
+      const slotStart = new Date(`${date}T${slot}:00`);
+      const slotEnd = new Date(
+        slotStart.getTime() + duration * 60 * 1000
+      );
+
+      const overlappingBooking = existingBookings.find((booking) => {
+        const bookingStart = new Date(booking.appointmentDate);
+
+        const bookingEnd = new Date(
+          bookingStart.getTime() + booking.duration * 60 * 1000
+        );
+
+        return (
+          slotStart < bookingEnd &&
+          slotEnd > bookingStart
+        );
+      });
+
+      return {
+        time: slot,
+        available: !overlappingBooking,
+        bookedInMongo: Boolean(overlappingBooking),
+      };
+    });
 
     const availableTimes = checkedSlots
       .filter((slot) => slot.available)

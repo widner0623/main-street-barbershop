@@ -54,7 +54,7 @@ const bookingSchema = new mongoose.Schema(
       default: "pending",
     },
 
-    googleEventId: {
+    squareBookingId: {
       type: String,
       default: null,
     },

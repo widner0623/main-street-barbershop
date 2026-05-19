@@ -17,6 +17,7 @@
     "express": "^5.2.1",
     "googleapis": "^171.4.0",
     "mongoose": "^9.6.2",
-    "resend": "^6.12.3"
+    "resend": "^6.12.3",
+    "square": "^44.0.1"
   }
 }

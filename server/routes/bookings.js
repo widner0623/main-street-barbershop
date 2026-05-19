@@ -1,27 +1,16 @@
 import express from "express";
 import Booking from "../models/Booking.js";
 import { Resend } from "resend";
-import {
-  checkCalendarAvailability,
-  createCalendarEvent,
-} from "../utils/googleCalendar.js";
+import { squareServiceMap } from "../config/squareMappings.js";
 
 const router = express.Router();
+
 const resend = process.env.RESEND_API_KEY
   ? new Resend(process.env.RESEND_API_KEY)
   : null;
 
 const getServiceDuration = (service) => {
-  const durations = {
-    "Classic Haircut": 30,
-    "Precision Fade": 45,
-    "Beard Sculpting": 30,
-    "Straight Razor Shave": 40,
-    "Kids Cut": 20,
-    "The Executive": 90,
-  };
-
-  return durations[service] || 60;
+  return squareServiceMap[service]?.duration || 30;
 };
 
 router.post("/", async (req, res) => {
@@ -54,38 +43,23 @@ router.post("/", async (req, res) => {
     const endDate = new Date(startDate.getTime() + duration * 60 * 1000);
 
     const existingBooking = await Booking.findOne({
-      appointmentDate: startDate,
+      appointmentDate: {
+        $gte: startDate,
+        $lt: endDate,
+      },
       barber: barber || "Any Barber",
       status: { $ne: "cancelled" },
     });
 
     if (existingBooking) {
       return res.status(409).json({
-        message: "That time slot is already booked.",
+        message: "That time slot was just booked. Please choose another time.",
       });
     }
 
-    const calendarAvailability = await checkCalendarAvailability({
-      startTime: startDate.toISOString(),
-      endTime: endDate.toISOString(),
-    });
-
-    if (!calendarAvailability.isAvailable) {
-      return res.status(409).json({
-        message: "That time is unavailable on the shop calendar.",
-      });
-    }
-
-    const calendarEvent = await createCalendarEvent({
-      customerName,
-      email,
-      phone,
-      service,
-      barber,
-      notes,
-      startTime: startDate.toISOString(),
-      endTime: endDate.toISOString(),
-    });
+    // TODO:
+    // Once Square credentials + service/team IDs are available,
+    // this is where we will create the real Square booking.
 
     const booking = new Booking({
       customerName,
@@ -96,8 +70,8 @@ router.post("/", async (req, res) => {
       duration,
       barber: barber || "Any Barber",
       notes,
-      status: "confirmed",
-      googleEventId: calendarEvent?.id || null,
+      status: "pending",
+      squareBookingId: null,
     });
 
     await booking.save();
@@ -124,7 +98,7 @@ router.post("/", async (req, res) => {
     res.status(201).json({
       message: "Booking created successfully.",
       booking,
-      calendarConfigured: calendarAvailability.configured,
+      squareConfigured: Boolean(process.env.SQUARE_ACCESS_TOKEN),
     });
   } catch (err) {
     console.error("Booking error:", err);
