@@ -14,7 +14,7 @@ const services = [
   "The Executive",
 ];
 
-const barbers = ["Any Barber", "Marcus Williams", "James Rodriguez"];
+const barbers = ["Any Barber", "Mark Ruddy", "Brittany Mcgahey"];
 
 const inputClass =
   "w-full rounded-xl border border-white/10 bg-white/[0.06] px-4 py-3.5 text-white placeholder-gray-400 outline-none transition focus:border-[#D4A85A]/70 focus:ring-2 focus:ring-[#D4A85A]/40";

@@ -30,6 +30,6 @@ export const squareServiceMap = {
 };
 
 export const squareBarberMap = {
-  "Marcus Williams": "",
-  "James Rodriguez": "",
+  "Mark Ruddy": "",
+  "Brittany Mcgahey": "",
 };

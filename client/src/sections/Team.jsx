@@ -4,19 +4,19 @@ import { motion } from "framer-motion";
 
 const team = [
   {
-    name: "Marcus Williams",
+    name: "Mark Ruddy",
     role: "Master Barber & Owner",
-    years: "15 years",
-    instagram: "@marcuscuts",
+    years: "8 years",
+    instagram: "@markmruddytoo",
     image:
       "https://images.unsplash.com/photo-1621605815971-fbc98d665033?q=80&w=1974&auto=format&fit=crop",
     specialties: ["Classic Cuts", "Fades", "Straight Razor"],
   },
   {
-    name: "James Rodriguez",
+    name: "Brittany Mcgahey",
     role: "Senior Barber",
-    years: "12 years",
-    instagram: "@jamesthebarber",
+    years: "2 years",
+    instagram: "",
     image:
       "https://images.unsplash.com/photo-1622287162716-f311baa1a2b8?q=80&w=1974&auto=format&fit=crop",
     specialties: ["Modern Styles", "Beard Sculpting", "Hair Design"],
