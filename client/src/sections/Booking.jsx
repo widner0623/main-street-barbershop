@@ -85,7 +85,9 @@ const Booking = ({ openBookingModal }) => {
             </p>
 
             <p className="mt-5 break-words text-2xl font-bold tracking-wide text-[#D4A85A] sm:mt-6 sm:text-3xl">
-              (555) 123-4567
+              <a href="tel:+12705040018" className="transition duration-300 hover:text-[#D4A85A]">
+                (270) 504-0018
+              </a>
             </p>
           </motion.a>
 
@@ -130,9 +132,11 @@ const Booking = ({ openBookingModal }) => {
               <div>
                 <h3 className="text-xl font-semibold">Hours</h3>
                 <p className="mt-2 leading-relaxed text-gray-300">
-                  Mon-Fri: 9am-8pm
+                  Mon: 9am-5pm · Tue: Closed
                   <br />
-                  Sat: 8am-6pm · Sun: 10am-4pm
+                  Wed: 9am-7pm · Thu: 9am-5pm
+                  <br />
+                  Fri: 11am-7pm · Sat: 9am-3pm · Sun: Closed
                 </p>
               </div>
             </motion.div>
