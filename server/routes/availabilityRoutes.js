@@ -4,77 +4,61 @@ import { squareServiceMap } from "../config/squareMappings.js";
 
 const router = express.Router();
 
-const timeSlots = [
-  "09:00",
-  "09:30",
-  "10:00",
-  "10:30",
-  "11:00",
-  "11:30",
-  "12:00",
-  "12:30",
-  "13:00",
-  "13:30",
-  "14:00",
-  "14:30",
-  "15:00",
-  "15:30",
-  "16:00",
-  "16:30",
-  "17:00",
+// Base 30-minute time grid
+const baseTimeSlots = [
+  "09:00", "09:30", "10:00", "10:30", "11:00", "11:30",
+  "12:00", "12:30", "13:00", "13:30", "14:00", "14:30",
+  "15:00", "15:30", "16:00", "16:30", "17:00"
 ];
 
-const getServiceDuration = (service) => {
-  return squareServiceMap[service]?.duration || 30;
-};
+// Get service duration from mappings
+const getServiceDuration = (service) => squareServiceMap[service]?.duration || 30;
 
 router.get("/", async (req, res) => {
   try {
     const { date, barber, service } = req.query;
 
     if (!date) {
-      return res.status(400).json({
-        message: "Date is required.",
-      });
+      return res.status(400).json({ message: "Date is required." });
+    }
+
+    if (service && !squareServiceMap[service]) {
+      return res.status(400).json({ message: "Invalid service selected." });
     }
 
     const duration = getServiceDuration(service);
 
     const startOfDay = new Date(`${date}T00:00:00`);
     const endOfDay = new Date(`${date}T23:59:59`);
+    const now = new Date();
 
+    // Fetch bookings for that day and barber
     const existingBookings = await Booking.find({
-      appointmentDate: {
-        $gte: startOfDay,
-        $lte: endOfDay,
-      },
-
-      status: {
-        $ne: "cancelled",
-      },
-
-      ...(barber && barber !== "Any Barber"
-        ? { barber }
-        : {}),
+      appointmentDate: { $gte: startOfDay, $lte: endOfDay },
+      status: { $ne: "cancelled" },
+      ...(barber && barber !== "Any Barber" ? { barber } : {}),
     });
 
-    const checkedSlots = timeSlots.map((slot) => {
+    // Check each time slot against bookings
+    const checkedSlots = baseTimeSlots.map((slot) => {
       const slotStart = new Date(`${date}T${slot}:00`);
-      const slotEnd = new Date(
-        slotStart.getTime() + duration * 60 * 1000
-      );
+      const slotEnd = new Date(slotStart.getTime() + duration * 60 * 1000);
+
+      // Skip times that have already passed for today
+      if (slotEnd < now && startOfDay.toDateString() === now.toDateString()) {
+        return {
+          time: slot,
+          available: false,
+          bookedInMongo: false,
+        };
+      }
 
       const overlappingBooking = existingBookings.find((booking) => {
         const bookingStart = new Date(booking.appointmentDate);
-
         const bookingEnd = new Date(
           bookingStart.getTime() + booking.duration * 60 * 1000
         );
-
-        return (
-          slotStart < bookingEnd &&
-          slotEnd > bookingStart
-        );
+        return slotStart < bookingEnd && slotEnd > bookingStart;
       });
 
       return {
@@ -84,13 +68,8 @@ router.get("/", async (req, res) => {
       };
     });
 
-    const availableTimes = checkedSlots
-      .filter((slot) => slot.available)
-      .map((slot) => slot.time);
-
-    const bookedTimes = checkedSlots
-      .filter((slot) => !slot.available)
-      .map((slot) => slot.time);
+    const availableTimes = checkedSlots.filter((s) => s.available).map((s) => s.time);
+    const bookedTimes = checkedSlots.filter((s) => !s.available).map((s) => s.time);
 
     res.json({
       date,
@@ -103,10 +82,7 @@ router.get("/", async (req, res) => {
     });
   } catch (error) {
     console.error("Availability error:", error);
-
-    res.status(500).json({
-      message: "Unable to check availability.",
-    });
+    res.status(500).json({ message: "Unable to check availability." });
   }
 });
 

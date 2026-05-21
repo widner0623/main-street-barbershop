@@ -8,18 +8,20 @@ const team = [
     role: "Master Barber & Owner",
     years: "8 years",
     instagram: "@markmruddytoo",
+    instagramLink: "https://www.instagram.com/markmruddytoo/",
     image:
       "https://images.unsplash.com/photo-1621605815971-fbc98d665033?q=80&w=1974&auto=format&fit=crop",
-    specialties: ["Classic Cuts", "Fades", "Straight Razor"],
+    specialties: ["Classic Cuts", "Fades", "Straight Razor", "Designs", "Perms"],
   },
   {
     name: "Brittany Mcgahey",
     role: "Senior Barber",
     years: "2 years",
-    instagram: "",
+    instagram: "@britthebarber08",
+    instagramLink: "https://www.instagram.com/britthebarber08/",
     image:
       "https://images.unsplash.com/photo-1622287162716-f311baa1a2b8?q=80&w=1974&auto=format&fit=crop",
-    specialties: ["Modern Styles", "Beard Sculpting", "Hair Design"],
+    specialties: ["Modern Styles", "Beard Sculpting", "Fades", "Straight Razor"],
   },
 ];
 
@@ -94,7 +96,9 @@ const Team = ({ openBookingModal }) => {
                 </div>
 
                 <a
-                  href="#contact"
+                  href={member.instagramLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   aria-label={`View ${member.name} on Instagram`}
                   className="absolute bottom-5 right-5 flex h-12 w-12 items-center justify-center rounded-full border border-white/20 bg-white/10 text-white backdrop-blur-md transition hover:border-[#D4A85A]/50 hover:bg-[#D4A85A] hover:text-black focus:outline-none focus:ring-2 focus:ring-[#D4A85A] sm:bottom-6 sm:right-6 sm:h-14 sm:w-14"
                 >

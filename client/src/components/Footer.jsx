@@ -126,7 +126,7 @@ const Footer = () => {
           <div className="mb-8 h-[220px] overflow-hidden rounded-xl bg-[#e5e3de] sm:mb-10 sm:h-[260px]">
             <div className="flex h-full items-start p-4">
               <a
-                href="#"
+                href="https://maps.app.goo.gl/KynbXSfZZqzL8mvU7"
                 className="rounded bg-white px-4 py-2 text-sm text-blue-600 shadow transition hover:bg-gray-100"
               >
                 Open in Maps ↗
@@ -135,7 +135,9 @@ const Footer = () => {
           </div>
 
           <div className="flex flex-col gap-5 text-sm text-gray-300 sm:text-base md:flex-row md:items-center md:justify-between">
-            <p>© 2026 Main Street Barbershop. All rights reserved.</p>
+            <p>© 2026 Main Street Barbershop. All rights reserved. Made By: <em><a href="https://redlinesystemsco.com/" target="_blank" rel="noopener noreferrer" className="text-[#D4A85A]">
+              Redline Systems Co.
+            </a></em></p>
 
             <div className="flex flex-wrap gap-5 sm:gap-8 md:justify-end">
               <a href="#" className="transition hover:text-[#D4A85A]">

@@ -1,3 +1,4 @@
+import "dotenv/config";
 import { SquareClient, SquareEnvironment } from "square";
 
 const environment =
@@ -6,7 +7,7 @@ const environment =
     : SquareEnvironment.Sandbox;
 
 const squareClient = new SquareClient({
-  token: process.env.SQUARE_ACCESS_TOKEN || "missing-token",
+  token: process.env.SQUARE_ACCESS_TOKEN,
   environment,
 });
 

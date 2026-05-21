@@ -1,35 +1,35 @@
 export const squareServiceMap = {
   "Classic Haircut": {
     duration: 30,
-    variationId: "",
+    variationId: "AQVPPKEORJRWJUYSK5SYU34V",
   },
   "Kids Cut": {
     duration: 30,
-    variationId: "",
+    variationId: "RKGR2SJUDD64TLATUIIGGK32",
   },
   "Straight Razor Shave": {
     duration: 30,
-    variationId: "",
+    variationId: "57IXKXY5ID6KMF6OZVGN3GR4",
   },
   "Beard Sculpting": {
     duration: 30,
-    variationId: "",
+    variationId: "LPNDUBTVFBUTYBMGIVBIETON",
   },
   "Signature Design": {
     duration: 30,
-    variationId: "",
+    variationId: "J64KSVWVW2T7ZEJ6YTMFEEBQ",
   },
   "Precision Perm": {
     duration: 60,
-    variationId: "",
+    variationId: "PKERKYXM47B5MH52N3ENLYQB",
   },
   "The Executive": {
     duration: 30,
-    variationId: "",
+    variationId: "FKFSYJPHWWUCJFZSKUQZM7F6",
   },
 };
 
 export const squareBarberMap = {
-  "Mark Ruddy": "",
-  "Brittany Mcgahey": "",
+  "Mark Ruddy": "TMrCHH6qwBQOTxdt",
+  "Brittany Mcgahey": "TM21yJ4c33KrGbgI",
 };
