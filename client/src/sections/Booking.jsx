@@ -154,9 +154,9 @@ const Booking = ({ openBookingModal }) => {
               <div>
                 <h3 className="text-xl font-semibold">Location</h3>
                 <p className="mt-2 leading-relaxed text-gray-300">
-                  123 Main Street
+                  237 South Main Street
                   <br />
-                  Downtown, CA 90210
+                  Hartford, KY 42347
                 </p>
               </div>
             </motion.div>

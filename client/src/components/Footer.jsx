@@ -26,7 +26,7 @@ const Footer = () => {
               </a>
 
               <a
-                href="#"
+                href="https://www.facebook.com/share/18Rynpeum5/?mibextid=wwXlfr"
                 aria-label="Facebook"
                 className="flex h-12 w-12 items-center justify-center rounded-full border border-white/10 bg-white/[0.03] transition hover:border-[#D4A85A]/50 hover:bg-[#D4A85A] hover:text-black"
               >
@@ -59,9 +59,13 @@ const Footer = () => {
 
             <div className="mt-6 space-y-5 sm:mt-8">
               {[
-                ["Monday - Friday", "9:00 AM - 8:00 PM"],
-                ["Saturday", "8:00 AM - 6:00 PM"],
-                ["Sunday", "10:00 AM - 4:00 PM"],
+                ["Monday", "9:00 AM - 5:00 PM"],
+                ["Tuesday", "Closed"],
+                ["Wednesday", "9:00 AM - 7:00 PM"],
+                ["Thursday", "9:00 AM - 5:00 PM"],
+                ["Friday", "11:00 AM - 7:00 PM"],
+                ["Saturday", "9:00 AM - 3:00 PM"],
+                ["Sunday", "Closed"],
               ].map(([day, time]) => (
                 <div key={day} className="flex gap-4">
                   <Clock
@@ -89,9 +93,9 @@ const Footer = () => {
                   size={22}
                 />
                 <p>
-                  123 Main Street
+                  237 South Main Street
                   <br />
-                  Downtown, CA 90210
+                  Hartford, KY 42347
                 </p>
               </div>
 
@@ -104,7 +108,7 @@ const Footer = () => {
                   className="mt-1 shrink-0 text-[#D4A85A]"
                   size={22}
                 />
-                <span>(555) 123-4567</span>
+                <span><a href="tel:+12705040018">(270) 504-0018</a></span>
               </a>
 
               <a
@@ -116,7 +120,7 @@ const Footer = () => {
                   className="mt-1 shrink-0 text-[#D4A85A]"
                   size={22}
                 />
-                <span>hello@mainstreetbarber.com</span>
+                <span><a href="mailto:mark.ruddy2@yahoo.com">mark.ruddy2@yahoo.com</a></span>
               </a>
             </div>
           </div>
@@ -135,7 +139,7 @@ const Footer = () => {
           </div>
 
           <div className="flex flex-col gap-5 text-sm text-gray-300 sm:text-base md:flex-row md:items-center md:justify-between">
-            <p>© 2026 Main Street Barbershop. All rights reserved. Made By: <em><a href="https://redlinesystemsco.com/" target="_blank" rel="noopener noreferrer" className="text-[#D4A85A]">
+            <p>&copy; {new Date().getFullYear()} Main Street Barbershop. All rights reserved. Made By: <em><a href="https://redlinesystemsco.com/" target="_blank" rel="noopener noreferrer" className="text-[#D4A85A]">
               Redline Systems Co.
             </a></em></p>
 
