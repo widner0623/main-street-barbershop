@@ -79,7 +79,7 @@ const BookingModal = ({ isOpen, onClose, onSuccess, onError, selectedService, se
           barber: form.barber || "Any Barber",
         });
 
-        const res = await fetch(`http://localhost:5000/api/availability?${params.toString()}`);
+        const res = await fetch(`${import.meta.env.VITE_API_URL}/api/availability?${params.toString()}`);
         if (!res.ok) throw new Error("Failed to fetch availability");
 
         let data = await res.json();
@@ -129,7 +129,7 @@ const BookingModal = ({ isOpen, onClose, onSuccess, onError, selectedService, se
         ? new Date(`${form.date.toISOString().split("T")[0]}T${form.time}`)
         : null;
 
-      const res = await fetch("http://localhost:5000/api/bookings", {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/bookings`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
