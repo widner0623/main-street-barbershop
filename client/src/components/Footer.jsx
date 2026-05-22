@@ -126,18 +126,34 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="mt-14 border-t border-white/10 pt-8 sm:mt-16 sm:pt-10 lg:mt-20">
-          <div className="mb-8 h-[220px] overflow-hidden rounded-xl bg-[#e5e3de] sm:mb-10 sm:h-[260px]">
-            <div className="flex h-full items-start p-4">
-              <a
-                href="https://maps.app.goo.gl/KynbXSfZZqzL8mvU7"
-                className="rounded bg-white px-4 py-2 text-sm text-blue-600 shadow transition hover:bg-gray-100"
-              >
-                Open in Maps ↗
-              </a>
-            </div>
-          </div>
+       <div className="mt-14 border-t border-white/10 py-8 sm:mt-16 sm:pt-10 lg:mt-20">
+        <div className="relative h-[260px] sm:h-[320px] lg:h-[450px] rounded-xl overflow-hidden border border-white/10 bg-[#0e0e0e]">
+          {/* Google Map iframe */}
+          <iframe
+            src="https://www.google.com/maps?q=37.45094,-86.90864&z=17&output=embed"
+            className="w-full h-full"
+            style={{ border: 0 }}
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+            title="Main Street Barbershop"
+          />
 
+          {/* Overlay button for Open in Maps */}
+          <a
+            href={
+              /iPhone|iPad|iPod/i.test(navigator.userAgent)
+                ? "http://maps.apple.com/?q=Main+Street+Barbershop"
+                : "https://maps.app.goo.gl/KynbXSfZZqzL8mvU7"
+            }
+            target="_blank"
+            rel="noopener noreferrer"
+            className="absolute top-4 left-4 z-10 rounded bg-white px-4 py-2 text-sm font-medium text-blue-600 shadow-lg hover:bg-gray-100 transition"
+          >
+            Get Directions →
+          </a>
+        </div>
+      </div>
+        
           <div className="flex flex-col gap-5 text-sm text-gray-300 sm:text-base md:flex-row md:items-center md:justify-between">
             <p>&copy; {new Date().getFullYear()} Main Street Barbershop. All rights reserved. Made By: <em><a href="https://redlinesystemsco.com/" target="_blank" rel="noopener noreferrer" className="text-[#D4A85A]">
               Redline Systems Co.
@@ -154,7 +170,6 @@ const Footer = () => {
             </div>
           </div>
         </div>
-      </div>
     </footer>
   );
 };
