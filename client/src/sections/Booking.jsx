@@ -67,7 +67,7 @@ const Booking = ({ openBookingModal }) => {
           <motion.a
             variants={fadeUp}
             whileHover={{ y: -6 }}
-            href="tel:5551234567"
+            href="tel:+12705040018"
             className="group rounded-2xl border border-white/10 bg-white/[0.04] p-7 text-center backdrop-blur-md transition duration-300 hover:border-[#D4A85A]/50 hover:bg-white/[0.07] focus:outline-none focus:ring-2 focus:ring-[#D4A85A] focus:ring-offset-4 focus:ring-offset-black sm:p-10 lg:p-12"
           >
             <Phone
