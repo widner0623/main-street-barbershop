@@ -142,7 +142,7 @@ const Footer = () => {
           <a
             href={
               /iPhone|iPad|iPod/i.test(navigator.userAgent)
-                ? "http://maps.apple.com/?q=Main+Street+Barbershop"
+                ? "http://maps.apple.com/?address=237+S+Main+St,+Hartford,+KY+42347"
                 : "https://maps.app.goo.gl/KynbXSfZZqzL8mvU7"
             }
             target="_blank"
