@@ -24,7 +24,7 @@ const services = [
     title: "Kids Cut",
     price: "$15",
     description:
-      "Friendly and comfortable haircut service for children with patience, precision, and a relaxed atmosphere.",
+      "Friendly and comfortable haircut service for children under 9 with patience, precision, and a relaxed atmosphere.",
     features: ["30 minutes", "Kid-friendly service", "Detailed lineup"],
   },
 

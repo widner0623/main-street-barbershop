@@ -31,7 +31,7 @@ const faqs = [
   {
     question: "Do you offer services for kids?",
     answer:
-      "Yes, we offer kids cuts for children under 12.",
+      "Yes, we offer kids cuts for children under 9.",
   },
   {
     question: "What is your cancellation policy?",

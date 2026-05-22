@@ -134,7 +134,7 @@ const Booking = ({ openBookingModal }) => {
                 <p className="mt-2 leading-relaxed text-gray-300">
                   Mon: 9am-5pm · Tue: Closed
                   <br />
-                  Wed: 9am-7pm · Thu: 9am-5pm
+                  Wed: 11am-7pm · Thu: 9am-5pm
                   <br />
                   Fri: 11am-7pm · Sat: 9am-3pm · Sun: Closed
                 </p>
