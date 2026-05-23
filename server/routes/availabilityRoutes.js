@@ -1,72 +1,152 @@
 import express from "express";
 import Booking from "../models/Booking.js";
-import { squareServiceMap } from "../config/squareMappings.js";
+import { squareServiceMap, squareBarberMap } from "../config/squareMappings.js";
+import squareClient from "../utils/squareClient.js";
 
 const router = express.Router();
 
-// Base 30-minute time grid
-const baseTimeSlots = [
-  "09:00","09:30","10:00","10:30","11:00","11:30",
-  "12:00","12:30","13:00","13:30","14:00","14:30",
-  "15:00","15:30","16:00","16:30","17:00"
-];
-
-// Get service duration from mapping
-const getServiceDuration = (service) => squareServiceMap[service]?.duration || 30;
+const formatTime = (date) => {
+  return date.toLocaleTimeString("en-US", {
+    hour: "2-digit",
+    minute: "2-digit",
+    hour12: false,
+  });
+};
 
 router.get("/", async (req, res) => {
   try {
     const { date, barber, service } = req.query;
 
-    if (!date) return res.status(400).json({ message: "Date is required." });
-    if (service && !squareServiceMap[service]) return res.status(400).json({ message: "Invalid service selected." });
+    if (!date) {
+      return res.status(400).json({ message: "Date is required." });
+    }
 
-    const duration = getServiceDuration(service);
+    if (!service || !squareServiceMap[service]) {
+      return res.status(400).json({ message: "Valid service is required." });
+    }
+
+    const serviceInfo = squareServiceMap[service];
+
+    if (!serviceInfo.variationId) {
+      return res.status(400).json({
+        message: "This service is missing a Square variation ID.",
+      });
+    }
+
     const startOfDay = new Date(`${date}T00:00:00`);
     const endOfDay = new Date(`${date}T23:59:59`);
     const now = new Date();
 
-    // Fetch bookings
+    const locationsResult = await squareClient.locations.list();
+    const locationId = locationsResult.locations?.[0]?.id;
+
+    if (!locationId) {
+      return res.status(500).json({
+        message: "Square location was not found.",
+      });
+    }
+
+    const teamMemberIds =
+      barber && barber !== "Any Barber"
+        ? squareBarberMap[barber]
+          ? [squareBarberMap[barber]]
+          : []
+        : Object.values(squareBarberMap);
+
+    if (teamMemberIds.length === 0) {
+      return res.json({
+        date,
+        barber: barber || "Any Barber",
+        service,
+        duration: serviceInfo.duration,
+        availableTimes: [],
+        bookedTimes: [],
+        slots: [],
+      });
+    }
+
+    const squareAvailability = await squareClient.bookings.searchAvailability({
+      query: {
+        filter: {
+          startAtRange: {
+            startAt: startOfDay.toISOString(),
+            endAt: endOfDay.toISOString(),
+          },
+          locationId,
+          segmentFilters: [
+            {
+              serviceVariationId: serviceInfo.variationId,
+              teamMemberIdFilter: {
+                any: teamMemberIds,
+              },
+            },
+          ],
+        },
+      },
+    });
+
+    let squareSlots = squareAvailability.availabilities || [];
+
+    squareSlots = squareSlots.filter((slot) => {
+      const slotStart = new Date(slot.startAt);
+      return slotStart > now;
+    });
+
     const existingBookings = await Booking.find({
       appointmentDate: { $gte: startOfDay, $lte: endOfDay },
       status: { $ne: "cancelled" },
       ...(barber && barber !== "Any Barber" ? { barber } : {}),
     });
 
-    // Map times and filter past slots if today
-    const checkedSlots = baseTimeSlots.map((slot) => {
-      const slotStart = new Date(`${date}T${slot}:00`);
-      const slotEnd = new Date(slotStart.getTime() + duration * 60 * 1000);
+    const checkedSlots = squareSlots.map((slot) => {
+      const slotStart = new Date(slot.startAt);
+      const time = formatTime(slotStart);
 
-      // Hide past times for today
-      if (startOfDay.toDateString() === now.toDateString() && slotEnd <= now) {
-        return { time: slot, available: false, bookedInMongo: false };
-      }
+      const overlappingBooking = existingBookings.find((booking) => {
+        const bookingStart = new Date(booking.appointmentDate);
+        const bookingEnd = new Date(
+          bookingStart.getTime() + booking.duration * 60 * 1000
+        );
 
-      const overlappingBooking = existingBookings.find(b => {
-        const bookingStart = new Date(b.appointmentDate);
-        const bookingEnd = new Date(bookingStart.getTime() + b.duration * 60 * 1000);
+        const slotEnd = new Date(
+          slotStart.getTime() + serviceInfo.duration * 60 * 1000
+        );
+
         return slotStart < bookingEnd && slotEnd > bookingStart;
       });
 
-      return { time: slot, available: !overlappingBooking, bookedInMongo: Boolean(overlappingBooking) };
+      return {
+        time,
+        available: !overlappingBooking,
+        bookedInMongo: Boolean(overlappingBooking),
+        squareStartAt: slot.startAt,
+        teamMemberId: slot.appointmentSegments?.[0]?.teamMemberId || null,
+      };
     });
 
-    const availableTimes = checkedSlots.filter(s => s.available).map(s => s.time);
-    const bookedTimes = checkedSlots.filter(s => !s.available).map(s => s.time);
+    const availableTimes = checkedSlots
+      .filter((slot) => slot.available)
+      .map((slot) => slot.time);
+
+    const bookedTimes = checkedSlots
+      .filter((slot) => !slot.available)
+      .map((slot) => slot.time);
 
     res.json({
       date,
       barber: barber || "Any Barber",
-      service: service || null,
-      duration,
+      service,
+      duration: serviceInfo.duration,
       availableTimes,
       bookedTimes,
       slots: checkedSlots,
     });
   } catch (error) {
-    console.error("Availability error:", error);
-    res.status(500).json({ message: "Unable to check availability." });
+    console.error("Square availability error:", error);
+
+    res.status(500).json({
+      message: "Unable to check Square availability.",
+    });
   }
 });
 
