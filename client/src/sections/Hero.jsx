@@ -98,9 +98,9 @@ const Hero = ({ openBookingModal }) => {
           className="mt-16 grid w-full max-w-4xl grid-cols-1 gap-10 border-t border-white/10 pt-10 sm:mt-20 sm:grid-cols-3 sm:gap-6 sm:pt-12 lg:mt-24 lg:gap-12 lg:pt-14"
         >
           {[
-            ["15+", "Years Experience"],
+            ["8+", "Years Experience"],
             ["5K+", "Happy Clients"],
-            ["4.9★", "Google Rating"],
+            ["4.8★", "Google Rating"],
           ].map(([number, label]) => (
             <div key={label} className="flex flex-col items-center">
               <h3 className="text-4xl font-bold text-[#D4A85A] sm:text-5xl">

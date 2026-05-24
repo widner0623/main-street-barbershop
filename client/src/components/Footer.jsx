@@ -13,7 +13,7 @@ const Footer = () => {
 
             <p className="mt-6 max-w-sm text-base font-light leading-relaxed text-gray-300 sm:mt-8 sm:text-lg">
               Premium men&apos;s grooming and barbershop services in the heart
-              of downtown since 2009.
+              of downtown since 2025.
             </p>
 
             <div className="mt-6 flex gap-4 sm:mt-8">
@@ -160,11 +160,11 @@ const Footer = () => {
             </a></em></p>
 
             <div className="flex flex-wrap gap-5 sm:gap-8 md:justify-end">
-              <a href="#" className="transition hover:text-[#D4A85A]">
+              <a href="/privacypolicy.pdf" rel="noopener noreferrer" target="_blank" className="transition hover:text-[#D4A85A]">
                 Privacy Policy
               </a>
 
-              <a href="#" className="transition hover:text-[#D4A85A]">
+              <a href="/termsofuse.pdf" rel="noopener noreferrer" target="_blank" className="transition hover:text-[#D4A85A]">
                 Terms of Service
               </a>
             </div>

@@ -4,34 +4,28 @@ import { useEffect, useState } from "react";
 
 const reviews = [
   {
-    name: "Michael Thompson",
-    role: "Business Professional",
-    time: "2 weeks ago",
-    text: "Been coming here for 3 years. The barbers are true masters of their craft. Every cut is perfect, and the atmosphere is unmatched. This isn't just a barbershop — it's an experience.",
+    name: "Casey Curry",
+    role: "New Customer",
+    time: "6 months ago",
+    text: "Mark and Brittany were great with my kids hair cuts. Will go there every time now!",
   },
   {
-    name: "David Miller",
-    role: "Local Customer",
-    time: "1 month ago",
-    text: "Clean shop, great service, and sharp results every time. They take their time and make sure you leave looking right.",
+    name: "Austin H.",
+    role: "New Customer",
+    time: "11 months ago",
+    text: "Wonderful place! Mark was a really nice guy, got my hair done the exact way I wanted, I usually don’t let barbers trim my beard, but I was definitely not disappointed!",
   },
   {
-    name: "Chris Johnson",
-    role: "Regular Client",
-    time: "2 months ago",
-    text: "Best fade I’ve had in years. Professional, friendly, and the attention to detail is exactly what you want from a barbershop.",
+    name: "Jacob N.",
+    role: "New Customer",
+    time: "1 year ago",
+    text: "Mark, the owner, was so friendly and got my hair looking exactly how I wanted it to! I definitely recommend him.",
   },
   {
-    name: "Anthony Brooks",
-    role: "Walk-in Customer",
-    time: "3 months ago",
-    text: "Walked in for a quick cut and left impressed. Great atmosphere, great conversation, and an even better haircut.",
-  },
-  {
-    name: "Ryan Carter",
-    role: "Returning Client",
-    time: "4 months ago",
-    text: "The quality is consistent every single time. You can tell they care about their work and their customers.",
+    name: "Caleb Rush",
+    role: "New Customer",
+    time: "1 year ago",
+    text: "Got a great beard trim here! A great business that can take care of any hair needs.",
   },
 ];
 
@@ -100,8 +94,8 @@ const Testimonials = () => {
             </div>
 
             <p className="text-base text-gray-300 sm:text-lg">
-              <span className="font-semibold text-white">4.9 out of 5</span>
-              <span className="text-gray-500"> · 500+ reviews</span>
+              <span className="font-semibold text-white">4.8 out of 5</span>
+              <span className="text-gray-500"> · 10+ reviews</span>
             </p>
           </div>
         </motion.div>
