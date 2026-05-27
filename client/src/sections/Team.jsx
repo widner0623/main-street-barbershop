@@ -1,6 +1,8 @@
 import { Award } from "lucide-react";
 import { FaInstagram } from "react-icons/fa";
 import { motion } from "framer-motion";
+import brittanyImage from "../assets/brittany.jpg";
+import markImage from "../assets/mark.jpg";
 
 const team = [
   {
@@ -9,8 +11,7 @@ const team = [
     years: "8 years",
     instagram: "@markmruddytoo",
     instagramLink: "https://www.instagram.com/markmruddytoo/",
-    image:
-      "https://images.unsplash.com/photo-1621605815971-fbc98d665033?q=80&w=1974&auto=format&fit=crop",
+    image: markImage,
     specialties: ["Classic Cuts", "Fades", "Straight Razor", "Designs", "Perms"],
   },
   {
@@ -19,8 +20,7 @@ const team = [
     years: "2 years",
     instagram: "@britthebarber08",
     instagramLink: "https://www.instagram.com/britthebarber08/",
-    image:
-      "https://images.unsplash.com/photo-1622287162716-f311baa1a2b8?q=80&w=1974&auto=format&fit=crop",
+    image: brittanyImage,
     specialties: ["Modern Styles", "Beard Sculpting", "Fades", "Straight Razor"],
   },
 ];

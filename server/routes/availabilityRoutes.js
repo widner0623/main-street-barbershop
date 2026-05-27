@@ -7,6 +7,7 @@ const router = express.Router();
 
 const formatTime = (date) => {
   return date.toLocaleTimeString("en-US", {
+    timeZone: "America/Chicago",
     hour: "2-digit",
     minute: "2-digit",
     hour12: false,

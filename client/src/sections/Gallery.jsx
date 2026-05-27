@@ -3,16 +3,27 @@ import haircut from "../assets/haircut.jpeg";
 import exterior from "../assets/exterior.jpeg";
 import interior from "../assets/interior.jpeg";
 import gameSystem from "../assets/gameSystem.jpeg";
+import blowOut from "../assets/blowout_taper.jpg";
+import buzzCut from "../assets/buzzcut_mullet.jpg";
+import highTight from "../assets/high&tight.jpg";
+import muttonChops from "../assets/mutton_chops.jpg";
+import perm from "../assets/perm.jpg";
+import cleanup from "../assets/cleanup.jpg";
+import backedFadeDesign from "../assets/backedFadeDesign.jpg"
+
 
 const galleryImages = [
+  {
+    label: "Shop Interior",
+    image: interior,
+  },
   {
     label: "Shop Exterior",
     image: exterior,
   },
   {
-    label: "Tools",
-    image:
-      "https://images.unsplash.com/photo-1621605815971-fbc98d665033?q=80&w=1974&auto=format&fit=crop",
+    label: "Blowout Taper",
+    image: blowOut,
   },
   {
     label: "Vintage Games",
@@ -23,8 +34,28 @@ const galleryImages = [
     image: haircut,
   },
   {
-    label: "Shop Interior",
-    image: interior,
+    label: "Backed Fade & Design",
+    image: backedFadeDesign,
+  },
+  {
+    label: "Buzz Cut",
+    image: buzzCut,
+  },
+  {
+    label: "High & Tight",
+    image: highTight,
+  },
+  {
+    label: "Perm",
+    image: perm,
+  },
+  {
+    label: "Cleanup Haircut",
+    image: cleanup,
+  },
+  {
+    label: "Mutton Chops",
+    image: muttonChops,
   },
 ];
 
