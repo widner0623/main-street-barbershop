@@ -120,6 +120,12 @@ const BookingModal = ({ isOpen, onClose, onSuccess, onError, selectedService, se
     setBackendError("");
   };
 
+  useEffect(() => {
+    if (!isOpen) {
+      resetForm();
+    }
+  }, [isOpen]);
+
   const handleSubmit = async e => {
     e.preventDefault();
     setBackendError("");
