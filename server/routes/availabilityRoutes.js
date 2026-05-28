@@ -18,6 +18,16 @@ router.get("/", async (req, res) => {
   try {
     const { date, barber, service } = req.query;
 
+    console.log("date from frontend:", date);
+    console.log(
+      "parsed server date:",
+      new Date(`${date}T12:00:00`).toString()
+    );
+    console.log(
+      "day of the week:",
+      new Date(`${date}T12:00:00`).getDay()
+    );
+
     if (!date) {
       return res.status(400).json({ message: "Date is required." });
     }
@@ -70,8 +80,8 @@ router.get("/", async (req, res) => {
       query: {
         filter: {
           startAtRange: {
-            startAt: startOfDay.toISOString(),
-            endAt: endOfDay.toISOString(),
+            startAt: `${date}T00:00:00-05:00`,
+            endAt: `${date}T23:59:59-05:00`,
           },
           locationId,
           segmentFilters: [
