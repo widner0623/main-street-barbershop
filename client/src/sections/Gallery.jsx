@@ -38,7 +38,7 @@ const galleryImages = [
     image: backedFadeDesign,
   },
   {
-    label: "Buzz Cut",
+    label: "Buzz Cut Mullet",
     image: buzzCut,
   },
   {
