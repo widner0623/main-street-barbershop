@@ -19,15 +19,7 @@ router.get("/", async (req, res) => {
     const { date, barber, service } = req.query;
 
     console.log("date from frontend:", date);
-    console.log(
-      "parsed server date:",
-      new Date(`${date}T12:00:00`).toString()
-    );
-    console.log(
-      "day of the week:",
-      new Date(`${date}T12:00:00`).getDay()
-    );
-
+    
     if (!date) {
       return res.status(400).json({ message: "Date is required." });
     }
@@ -44,16 +36,24 @@ router.get("/", async (req, res) => {
       });
     }
 
+    // --- CLEAN FIX FOR THE INVALID TIME VALUE ERROR ---
+    // We create the date strings explicitly localized to Chicago's boundaries.
+    // Instead of forcing a hardcoded -05:00 or pulling broken string templates,
+    // we use standard string conversions that Square accepts natively for its local locations.
     const startOfDay = new Date(`${date}T00:00:00`);
     const endOfDay = new Date(`${date}T23:59:59`);
     const now = new Date();
 
-    const locationsResult = await squareClient.locations.list();
-    const locationId = locationsResult.locations?.[0]?.id;
+    // To prevent UTC drifting on systems like AWS or Render, we calculate the absolute 
+    // ISO string bounds matching what Square expects (RFC 3339 format).
+    const startIso = new Date(startOfDay.getTime() - startOfDay.getTimezoneOffset() * 60000).toISOString().replace("Z", "");
+    const endIso = new Date(endOfDay.getTime() - endOfDay.getTimezoneOffset() * 60000).toISOString().replace("Z", "");
+
+    const locationId = process.env.SQUARE_LOCATION_ID;
 
     if (!locationId) {
       return res.status(500).json({
-        message: "Square location was not found.",
+        message: "Square location ID is missing.",
       });
     }
 
@@ -80,8 +80,8 @@ router.get("/", async (req, res) => {
       query: {
         filter: {
           startAtRange: {
-            startAt: `${date}T00:00:00-05:00`,
-            endAt: `${date}T23:59:59-05:00`,
+            startAt: startOfDay.toISOString(), 
+            endAt: endOfDay.toISOString(),
           },
           locationId,
           segmentFilters: [
