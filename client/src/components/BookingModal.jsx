@@ -71,8 +71,14 @@ const BookingModal = ({ isOpen, onClose, onSuccess, onError, selectedService, se
       setLoadingTimes(true);
       setBackendError("");
 
+      
       try {
-        const dateStr = form.date.toISOString().split("T")[0];
+        const dateStr = [
+          form.date.getFullYear(),
+          String(form.date.getMonth() + 1).padStart(2, "0"),
+          String(form.date.getDate()).padStart(2, "0"),
+        ].join("-");
+       
         const params = new URLSearchParams({
           date: dateStr,
           service: form.service,
@@ -131,9 +137,16 @@ const BookingModal = ({ isOpen, onClose, onSuccess, onError, selectedService, se
     setBackendError("");
 
     try {
-      const appointmentDate = form.date && form.time
-        ? new Date(`${form.date.toISOString().split("T")[0]}T${form.time}`)
-        : null;
+      const localDate = [
+        form.date.getFullYear(),
+        String(form.date.getMonth() + 1).padStart(2, "0"),
+        String(form.date.getDate()).padStart(2, "0"),
+      ].join("-");
+
+      const appointmentDate = 
+        form.date && form.time
+          ? new Date(`${localDate}T${form.time}`)
+          : null;
 
       const res = await fetch(`${import.meta.env.VITE_API_URL}/api/bookings`, {
         method: "POST",

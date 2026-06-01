@@ -36,7 +36,6 @@ router.get("/", async (req, res) => {
       });
     }
 
-    // --- CLEAN FIX FOR THE INVALID TIME VALUE ERROR ---
     // We create the date strings explicitly localized to Chicago's boundaries.
     // Instead of forcing a hardcoded -05:00 or pulling broken string templates,
     // we use standard string conversions that Square accepts natively for its local locations.
