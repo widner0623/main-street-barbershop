@@ -19,6 +19,21 @@ router.get("/", async (req, res) => {
     const { date, barber, service } = req.query;
 
     console.log("date from frontend:", date);
+
+    // Only let users book 21 days in advance for speed optimization
+    const selectedDate = new Date(`${date}T00:00:00`);
+
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+
+    const maxDate = new Date();
+    maxDate.setDate(maxDate.getDate() + 21);
+
+    if (selectedDate > maxDate) {
+      return res.status(400).json({
+        message: "Appointments can only be booked up to 21 days in advance.",
+      })
+    }
     
     if (!date) {
       return res.status(400).json({ message: "Date is required." });
@@ -74,6 +89,15 @@ router.get("/", async (req, res) => {
         slots: [],
       });
     }
+
+    console.log("---- Availability Debug -----");
+    console.log("Selected service:", service);
+    console.log("Mapped service info:", serviceInfo);
+    console.log("Variation ID being sent:", serviceInfo.variationId);
+    console.log("Team Member IDs:", teamMemberIds);
+    console.log("Location ID:", locationId);
+    console.log("Start:", startOfDay.toISOString(), "End:", endOfDay.toISOString());
+    console.log("--- End Debug -----");
 
     const squareAvailability = await squareClient.bookings.searchAvailability({
       query: {

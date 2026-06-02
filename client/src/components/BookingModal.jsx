@@ -229,6 +229,7 @@ const BookingModal = ({ isOpen, onClose, onSuccess, onError, selectedService, se
                 onChange={d => setForm({ ...form, date: d })}
                 onFocus={handleFieldFocus}
                 minDate={new Date()}
+                maxDate={new Date(new Date().setDate(new Date().getDate() + 21))}
                 placeholderText="Select a Date"
                 wrapperClassName="w-full"
                 calendarClassName="mainstreet-datepicker"
