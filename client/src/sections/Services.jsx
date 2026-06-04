@@ -67,10 +67,10 @@ const services = [
   {
     icon: BriefcaseBusiness,
     title: "The Executive",
-    price: "$10",
+    price: "$35",
     description:
-      "Premium finishing service focused on enhancing your overall look with extra detailing and refinement.",
-    features: ["30 minutes", "Premium detailing", "Enhanced finish"],
+      "Premium finishing service focused on enhancing your overall look with extra detailing and refinement with haircut & beard trim.",
+    features: ["60 minutes", "Premium detailing", "Enhanced finish"],
   },
 ];
 

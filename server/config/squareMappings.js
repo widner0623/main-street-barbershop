@@ -25,12 +25,12 @@ export const squareServiceMap = {
     version: 1755897466279,
   },
   "Precision Perm": {
-    duration: 60,
+    duration: 120,
     variationId: "JZSWS2XU6EJ67IIHV4ASCM2J",
     version: 1760972240996,
   },
   "The Executive": {
-    duration: 30,
+    duration: 60,
     variationId: "F53VGRHTJAMK4HL2QNQHBFDE",
     version: 1760972240996,
   },
