@@ -51,3 +51,19 @@ body {
 .mainstreet-datepicker .react-datepicker__navigation-icon::before {
   border-color: #d4a85a !important;
 }
+
+@keyframes fadeSlide {
+  from {
+    opacity: 0;
+    transform: translateY(40px) scale(0.97);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.animate-fadeSlide {
+  animation: fadeSlide 1.25s ease-out;
+}
