@@ -163,19 +163,39 @@ const Display = () => {
 
         {currentSlide === "wait" && (
           <>
-            <p className="mb-6 text-3xl uppercase tracking-[0.4em] text-[#D4A85A]">
-              Current Wait Time
-            </p>
+            {settings.shopStatus === "closed" ? (
+              <>
+                <p className="mb-6 text-3xl uppercase tracking-[0.4em] text-[#D4A85A]">
+                  Shop Status 
+                </p>
 
-            <div className="rounded-full border-4 border-[#D4A85A] bg-black/70 px-20 py-16 shadow-2xl animate-pulseGold">
-              <p className="text-[11rem] leading-none font-black text-[#D4A85A]">
-                {settings.waitTime}
-              </p>
+                <div className="rounded-3xl border-4 border-red-500 bg-black/70 px-20 py-16 shadow-2xl">
+                  <p className="text-8xl font-black uppercase text-red-500">
+                    Closed 
+                  </p>
 
-              <p className="mt-4 text-5xl font-bold uppercase">Minutes</p>
-            </div>
+                  <p className="mt-6 text-4xl">
+                    We look forward to seeing you soon.
+                  </p>  
+                </div>
+              </>
+             ) : (
+                <>
+                  <p className="mb-6 text-3xl uppercase tracking-[0.4em] text-[#D4A85A]">
+                    Current Wait Time
+                  </p>
 
-            <p className="mt-10 text-4xl">Walk-ins are welcome</p>
+                  <div className="rounded-full border-4 border-[#D4A85A] bg-black/70 px-20 py-16 shadow-2xl animate-pulseGold">
+                    <p className="text-[11rem] leading-none font-black text-[#D4A85A]">
+                      {settings.waitTime}
+                    </p>
+                  </div>
+
+                  <p className="mt-10 text-4xl">
+                    Walk-ins are welcome
+                  </p>
+                </>
+            )}
           </>
         )}
 
