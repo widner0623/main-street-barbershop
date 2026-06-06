@@ -166,7 +166,7 @@ const Display = () => {
             {settings.shopStatus === "closed" ? (
               <>
                 <p className="mb-6 text-3xl uppercase tracking-[0.4em] text-[#D4A85A]">
-                  Shop Status 
+                  Thanks For Visiting 
                 </p>
 
                 <div className="rounded-3xl border-4 border-red-500 bg-black/70 px-20 py-16 shadow-2xl">
@@ -175,7 +175,7 @@ const Display = () => {
                   </p>
 
                   <p className="mt-6 text-4xl">
-                    We look forward to seeing you soon.
+                    We look forward to your next visit.
                   </p>  
                 </div>
               </>
