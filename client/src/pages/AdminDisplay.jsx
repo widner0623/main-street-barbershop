@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 
 const API_URL = import.meta.env.VITE_API_URL;
 
-const waitOptions = [0, 5, 10, 15, 20, 30, 45, 60];
+const waitOptions = [0, 10, 20, 30, 45, 60, 90, 120];
 
 const defaultGalleryImages = [
   "/display-gallery/cut1.jpg",
