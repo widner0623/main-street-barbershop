@@ -110,7 +110,7 @@ const Display = () => {
     </>
   );
   
-  const isMobileView = window.innerWidth < 1024;
+  const isMobileView = window.innerWidth < 768;
 
   if (isMobileView) {
     return (
