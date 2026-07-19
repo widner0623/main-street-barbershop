@@ -1,5 +1,4 @@
 import { motion } from "framer-motion";
-import haircut from "../assets/haircut.jpeg";
 import exterior from "../assets/exterior.jpeg";
 import interior from "../assets/interior.jpeg";
 import gameSystem from "../assets/gameSystem.jpeg";
@@ -28,10 +27,6 @@ const galleryImages = [
   {
     label: "Vintage Games",
     image: gameSystem,
-  },
-  {
-    label: "Fresh Fade",
-    image: haircut,
   },
   {
     label: "Backed Fade & Design",

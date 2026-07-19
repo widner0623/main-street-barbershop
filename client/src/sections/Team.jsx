@@ -1,7 +1,7 @@
 import { Award } from "lucide-react";
 import { FaInstagram } from "react-icons/fa";
 import { motion } from "framer-motion";
-import brittanyImage from "../assets/brittany.jpg";
+import hiringImage from "../assets/interior.jpeg";
 import markImage from "../assets/mark.jpg";
 
 const team = [
@@ -15,13 +15,14 @@ const team = [
     specialties: ["Classic Cuts", "Fades", "Straight Razor", "Designs", "Perms"],
   },
   {
-    name: "Brittany Mcgahey",
-    role: "Senior Barber",
-    years: "2 years",
-    instagram: "@britthebarber08",
-    instagramLink: "https://www.instagram.com/britthebarber08/",
-    image: brittanyImage,
-    specialties: ["Modern Styles", "Beard Sculpting", "Fades", "Straight Razor"],
+    name: "Now Hiring",
+    role: "Licensed Barber Wanted",
+    years: "Join Our Team",
+    instagram: "",
+    instagramLink: "",
+    image: hiringImage,
+    specialties: ["Competitive Pay", "Flexible Schedule", "Established Clientele", "Apply Today"],
+    hiring: true,
   },
 ];
 
@@ -138,6 +139,7 @@ const Team = ({ openBookingModal }) => {
                   </div>
                 </div>
 
+              {!member.hiring && (
                 <button
                   type="button"
                   onClick={() => openBookingModal({ barber: member.name })}
@@ -145,6 +147,7 @@ const Team = ({ openBookingModal }) => {
                 >
                   Book with {member.name.split(" ")[0]}
                 </button>
+              )}
               </motion.div>
             </motion.article>
           ))}
