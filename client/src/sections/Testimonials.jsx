@@ -4,22 +4,22 @@ import { useEffect, useState } from "react";
 
 const reviews = [
   {
-    name: "Casey Curry",
+    name: "Leslie Ferguson",
     role: "New Customer",
-    time: "6 months ago",
-    text: "Mark and Brittany were great with my kids hair cuts. Will go there every time now!",
+    time: "1 month ago",
+    text: "what a wonderful experience for my girls first hair cut! Brittany was so patient with her. My girl was too scared for anything, she came straight to her, in the waiting chair and cut her hair there while gently tending to her. Mark is such a wonderful man as well. They treated us with such kindness. Truly couldn’t have went to anyone better. Thank you for making L’s first haircut such a breeze. She looks so beautiful! 🩷",
   },
   {
-    name: "Austin H.",
+    name: "Celena Hunt",
     role: "New Customer",
-    time: "11 months ago",
-    text: "Wonderful place! Mark was a really nice guy, got my hair done the exact way I wanted, I usually don’t let barbers trim my beard, but I was definitely not disappointed!",
+    time: "1 month ago",
+    text: "mark was amazing w my 3 year old, he talked him through the hair cut & was very patient! definitely recommend him, he did amazing !",
   },
   {
-    name: "Jacob N.",
+    name: "Jessica A.",
     role: "New Customer",
-    time: "1 year ago",
-    text: "Mark, the owner, was so friendly and got my hair looking exactly how I wanted it to! I definitely recommend him.",
+    time: "1 month ago",
+    text: "I just want to thank the staff for being so friendly and keeping the conversation going during the process lol sometimes haircuts can be unnerving for kids even if it's something they really want. This crew was amazing. Thank you guys!",
   },
   {
     name: "Caleb Rush",
