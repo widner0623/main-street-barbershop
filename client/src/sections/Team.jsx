@@ -148,6 +148,17 @@ const Team = ({ openBookingModal }) => {
                   Book with {member.name.split(" ")[0]}
                 </button>
               )}
+
+              {member.hiring && (
+                <button
+                  type="button"
+                  className="mt-8 flex w-full items-center justify-center rounded-xl border border-white/10 bg-white/[0.03] px-6 py-4 text-base font-semibold transition duration-300 hover:border-[#D4A85A]/50 hover:bg-[#D4A85A] hover:text-black focus:outline-none focus:ring-2 focus:ring-[#D4A85A] focus:ring-offset-4 focus:ring-offset-black sm:mt-10 sm:py-5 sm:text-lg"
+                >
+                  <a href="tel:+12705040018" target="_blank" rel="noopener noreferrer">
+                    Call to Apply!
+                  </a>
+                </button>
+              )}
               </motion.div>
             </motion.article>
           ))}
