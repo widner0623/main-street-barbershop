@@ -21,7 +21,7 @@ const team = [
     instagram: "",
     instagramLink: "",
     image: hiringImage,
-    specialties: ["Competitive Pay", "Flexible Schedule", "Established Clientele", "Apply Today"],
+    benefits: ["Competitive Pay", "Flexible Schedule", "Established Clientele", "Great Work Environment"],
     hiring: true,
   },
 ];
@@ -122,22 +122,43 @@ const Team = ({ openBookingModal }) => {
                   {member.instagram}
                 </p>
 
-                <div className="mt-6 border-t border-white/10 pt-6 sm:mt-8 sm:pt-8">
-                  <p className="mb-4 text-base text-gray-300 sm:mb-5 sm:text-lg">
-                    Specialties:
-                  </p>
+                {member.specialties && (
+                  <div className="mt-6 border-t border-white/10 pt-6 sm:mt-8 sm:pt-8">
+                    <p className="mb-4 text-base text-gray-300 sm:mb-5 sm:text-lg">
+                      Specialties:
+                    </p>
 
-                  <div className="flex flex-wrap gap-3">
-                    {member.specialties.map((specialty) => (
-                      <span
-                        key={specialty}
-                        className="rounded-full border border-white/10 bg-white/[0.03] px-4 py-2 text-sm text-white sm:px-5"
-                      >
-                        {specialty}
-                      </span>
-                    ))}
+                    <div className="flex flex-wrap gap-3">
+                      {member.specialties.map((specialty) => (
+                        <span
+                          key={specialty}
+                          className="rounded-full border border-white/10 bg-white/[0.03] px-4 py-2 text-sm text-white sm:px-5"
+                        >
+                          {specialty}
+                        </span>
+                      ))}
+                    </div>
                   </div>
-                </div>
+                )}
+
+                {member.benefits && (
+                  <div className="mt-6 border-t border-white/10 pt-6 sm:mt-8 sm:pt-8">
+                    <p className="mb-4 text-base text-gray-300 sm:mb-5 sm:text-lg">
+                      Benefits:
+                    </p>
+
+                    <div className="flex flex-wrap gap-3">
+                      {member.benefits.map((benefit) => (
+                        <span
+                          key={benefit}
+                          className="rounded-full border border-white/10 bg-white/[0.03] px-4 py-2 text-sm text-white sm:px-5"
+                        >
+                          {benefit}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                )}
 
               {!member.hiring && (
                 <button
