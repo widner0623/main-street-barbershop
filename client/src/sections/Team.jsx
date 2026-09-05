@@ -18,11 +18,9 @@ const team = [
   {
     name: "Asa Virgil",
     role: "Master Barber",
-    years: "1 year",
-    instagram: "@asavirgil",
-    instagramLink: "https://www.instagram.com/asavirgil/",
+    years: "15 years",
     image: asaImage,
-    specialties: [],
+    specialties: ["Classic Cuts", "Fades", "Straight Razor", "Beard Sculpting"],
   },
   // {
   //   name: "Now Hiring",
