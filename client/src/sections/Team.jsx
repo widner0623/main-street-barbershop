@@ -3,6 +3,7 @@ import { FaInstagram } from "react-icons/fa";
 import { motion } from "framer-motion";
 import hiringImage from "../assets/interior.jpeg";
 import markImage from "../assets/mark.jpg";
+import asaImage from "../assets/barber_asa.jpg";
 
 const team = [
   {
@@ -15,15 +16,24 @@ const team = [
     specialties: ["Classic Cuts", "Fades", "Straight Razor", "Designs", "Perms"],
   },
   {
-    name: "Now Hiring",
-    role: "Licensed Barber Wanted",
-    years: "Join Our Team",
-    instagram: "",
-    instagramLink: "",
-    image: hiringImage,
-    benefits: ["Competitive Pay", "Flexible Schedule", "Established Clientele", "Great Work Environment"],
-    hiring: true,
+    name: "Asa Virgil",
+    role: "Master Barber",
+    years: "1 year",
+    instagram: "@asavirgil",
+    instagramLink: "https://www.instagram.com/asavirgil/",
+    image: asaImage,
+    specialties: [],
   },
+  // {
+  //   name: "Now Hiring",
+  //   role: "Licensed Barber Wanted",
+  //   years: "Join Our Team",
+  //   instagram: "",
+  //   instagramLink: "",
+  //   image: hiringImage,
+  //   benefits: ["Competitive Pay", "Flexible Schedule", "Established Clientele", "Great Work Environment"],
+  //   hiring: false,
+  // },
 ];
 
 const containerVariants = {

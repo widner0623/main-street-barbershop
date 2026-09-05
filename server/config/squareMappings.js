@@ -38,4 +38,5 @@ export const squareServiceMap = {
 
 export const squareBarberMap = {
   "Mark Ruddy": "TMrCHH6qwBQOTxdt",
+  "Asa Virgil": "TMS2RX4TeOd99YyD",
 };
