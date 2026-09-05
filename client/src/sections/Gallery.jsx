@@ -9,6 +9,8 @@ import muttonChops from "../assets/mutton_chops.jpg";
 import perm from "../assets/perm.jpg";
 import cleanup from "../assets/cleanup.jpg";
 import backedFadeDesign from "../assets/backedFadeDesign.jpg"
+import freshCutJustice from "../assets/freshcut_justice.jpg"
+import NewBarberAsa from "../assets/Asa.jpg"
 
 
 const galleryImages = [
@@ -52,6 +54,14 @@ const galleryImages = [
     label: "Mutton Chops",
     image: muttonChops,
   },
+  {
+    label: "Fresh Cut",
+    image: freshCutJustice,
+  },
+  {
+    label: "New Barber Asa",
+    image: NewBarberAsa,
+  }
 ];
 
 const containerVariants = {
