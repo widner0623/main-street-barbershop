@@ -132,11 +132,9 @@ const Booking = ({ openBookingModal }) => {
               <div>
                 <h3 className="text-xl font-semibold">Hours</h3>
                 <p className="mt-2 leading-relaxed text-gray-300">
-                  Mon: 9am-5pm · Tue: Closed
+                  Monday - Friday: 9am-5pm
                   <br />
-                  Wed: 11am-7pm · Thu: 9am-5pm
-                  <br />
-                  Fri: 11am-7pm · Sat: 9am-3pm · Sun: Closed
+                  Sat: 9am-3pm · Sun: Closed
                 </p>
               </div>
             </motion.div>

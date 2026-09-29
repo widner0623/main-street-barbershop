@@ -5,15 +5,15 @@ const API_URL = import.meta.env.VITE_API_URL;
 const weeklyHours = {
   0: "Closed",
   1: "9AM - 5PM",
-  2: "Closed",
-  3: "11AM - 7PM",
+  2: "9AM - 5PM",
+  3: "9AM - 5PM",
   4: "9AM - 5PM",
-  5: "11AM - 7PM",
+  5: "9AM - 5PM",
   6: "9AM - 3PM",
 };
 
 const weeklyHoursText =
-  "Mon & Thu 9AM - 5PM  • Wed & Fri: 11AM - 7PM • Sat: 9AM - 3PM  • Tue & Sun: Closed";
+  "Mon - Fri: 9AM - 5PM • Sat: 9AM - 3PM  • Sun: Closed";
 
 const getTodayHours = () => {
   const today = new Date().getDay();
